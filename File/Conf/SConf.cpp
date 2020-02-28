@@ -10,7 +10,7 @@ ConfErr SConf::Load()
 {
     std::string line, key, value;
     SConfDesc temp;
-    std::regex pattern   { "^[A-Za-z_]+=[A-Za-z]+|[0-9]+|[0-9]\.([0-9])+$" };
+    std::regex pattern   { "^[A-Za-z_]+[ \t]*=[ \t]*[A-Za-z]+|[0-9]+|[0-9]+\.([0-9])+$" };
     std::regex pattern_c { "#[:print:\t]" };
 
     if(File == "DEFAULT_CONF") return ConfErr::Name;
@@ -74,10 +74,7 @@ ConfErr SConf::Save()
 
 ConfErr SConf::SetArg(std::string Arg, std::string  value)
 {
-    if(IsExist(Arg))
-    {
-        config[GetIndex(Arg)].Value = value;
-    }
+    if(IsExist(Arg)) config[GetIndex(Arg)].Value = value;
     else
     {
         SConfDesc temp;
@@ -93,11 +90,10 @@ ConfErr SConf::SetArg(std::string Arg, std::string  value)
 
 ConfErr SConf::GetArg(std::string Arg, std::string& value)
 {
-    if(IsExist(Arg))
-    {
-        value = config[GetIndex(Arg)].Value;
-    }
-    else return ConfErr::Exist;
+    if(IsExist(Arg)) value = config[GetIndex(Arg)].Value;
+    else             return ConfErr::Exist;
+
+    return ConfErr::NoErr;
 }
 
 
