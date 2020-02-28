@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <regex>
 #include <map>
 #include "OPEN/Types/Defines.h"
 
@@ -36,9 +37,10 @@ public:
 private:
     QWORD NewHandle();
 
-    std::string File;
-    std::string type;
     QWORD handle;
+
+protected:
+    std::string File;
 };
 
 #endif // BASICCONF_H
