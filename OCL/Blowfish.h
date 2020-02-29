@@ -5,6 +5,9 @@
 #include <endian.h>
 #include "OPEN/Types/Defines.h"
 
+typedef union BWord BWord;
+
+/*
 #if __BYTE_ORDER == __BIG_ENDIAN
 typedef struct
 {
@@ -25,13 +28,16 @@ typedef struct
 }BBytes;
 #endif
 
-typedef union
+union BWord
 {
     BBytes bbytes;
     DWORD  bword;
-}BWord;
 
-typedef std::array<BWord, 2>  BData;
+    BWord& operator=(const BWord& b);
+};
+*/
+
+typedef std::array<DWORD, 2>  BData;
 typedef std::array<DWORD, 14> BKey;
 
 class Blowfish
@@ -48,7 +54,7 @@ private:
     void GenKeys();
     void Reset();
 
-    BWord F(BWord W);
+    DWORD F(DWORD W);
 
     BKey Key;
     std::array<DWORD, 18> P;

@@ -1,5 +1,14 @@
 #include "Blowfish.h"
 
+/*
+BWord& BWord::operator=(const BWord& b)
+{
+    bword = b.bword;
+
+    return *this;
+}
+*/
+
 Blowfish::Blowfish(BKey key)
 {
     for(BYTE i = 0; i < 14; i++) Key[i] = key[i];
@@ -10,25 +19,24 @@ Blowfish::Blowfish(BKey key)
 
 void Blowfish::BEncrypt(BData plain,  BData& cipher)
 {
-    BWord w1 = plain[0], w2 = plain[1], temp;
+    DWORD w1 = plain[0], w2 = plain[1], temp;
 
-    for(BYTE t = 0; t < 16; t++)
+    for(BYTE t = 0; t < 16; ++t)
     {
-        w1.bword ^= P[t];
-        w2.bword ^= F(w1).bword;
+        w1 ^= P[t];
+        w2 ^= F(w1);
 
-        if(t != 15)
-        {
-            temp = w1;
-            w1   = w2;
-            w2   = temp;
-        }
-        else
-        {
-            w1.bword ^= P[17];
-            w2.bword ^= P[16];
-        }
+        temp = w1;
+        w1   = w2;
+        w2   = temp;
     }
+
+    temp = w1;
+    w1   = w2;
+    w2   = temp;
+
+    w1 ^= P[17];
+    w2 ^= P[16];
 
     cipher[0] = w1;
     cipher[1] = w2;
@@ -36,26 +44,24 @@ void Blowfish::BEncrypt(BData plain,  BData& cipher)
 
 void Blowfish::BDecrypt(BData cipher, BData& plain)
 {
-    BWord w1 = cipher[0], w2 = cipher[1], temp;
+    DWORD w1 = cipher[0], w2 = cipher[1], temp;
 
-    for(BYTE t = 0; t < 16; t++)
+    for(BYTE t = 17; t > 1; --t)
     {
-        if(t == 0)
-        {
-            w1.bword ^= P[17];
-            w2.bword ^= P[16];
-        }
+        w1 ^= P[t];
+        w2 ^= F(w1);
 
-        w1.bword ^= P[15 - t];
-        w2.bword ^= F(w1).bword;
-
-        if(t != 15)
-        {
-            temp = w1;
-            w1   = w2;
-            w2   = temp;
-        }
+        temp = w1;
+        w1   = w2;
+        w2   = temp;
     }
+
+    temp = w1;
+    w1   = w2;
+    w2   = temp;
+
+    w1 ^= P[0];
+    w2 ^= P[1];
 
     plain[0] = w1;
     plain[1] = w2;
@@ -79,31 +85,31 @@ void Blowfish::GenKeys()
         else       P[i] ^= Key[i - 14];
     }
 
-    temp_p[0].bword = 0;
-    temp_p[1].bword = 0;
+    temp_p[0] = 0;
+    temp_p[1] = 0;
 
     for(BYTE i = 0; i < 18; i += 2)
     {
         BEncrypt(temp_p, temp_c);
 
-        P[i]     = temp_c[0].bword;
-        P[i + 1] = temp_c[1].bword;
+        P[i]     = temp_c[0];
+        P[i + 1] = temp_c[1];
 
-        temp_p[0].bword = temp_c[0].bword;
-        temp_p[1].bword = temp_c[1].bword;
+        temp_p[0] = temp_c[0];
+        temp_p[1] = temp_c[1];
     }
 
     for(BYTE i = 0; i < 4; i++)
     {
-        for(BYTE j = 0; j < 256; j += 2)
+        for(WORD j = 0; j < 256; j += 2)
         {
             BEncrypt(temp_p, temp_c);
 
-            SBox[i][i]     = temp_c[0].bword;
-            SBox[i][i + 1] = temp_c[1].bword;
+            SBox[i][i]     = temp_c[0];
+            SBox[i][i + 1] = temp_c[1];
 
-            temp_p[0].bword = temp_c[0].bword;
-            temp_p[1].bword = temp_c[1].bword;
+            temp_p[0] = temp_c[0];
+            temp_p[1] = temp_c[1];
         }
     }
 }
@@ -380,18 +386,25 @@ void Blowfish::Reset()
     for(BYTE i = 0; i < 18; i++) P[i] = P_init[i];
     for(BYTE i = 0; i < 4; i++)
     {
-        for(BYTE j = 0; j < 256; j++)
+        for(WORD j = 0; j < 256; j++)
         {
             SBox[i][j] = SBox_init[i][j];
         }
     }
 }
 
-BWord Blowfish::F(BWord W)
+DWORD Blowfish::F(DWORD W)
 {
-    BWord Wt;
+    DWORD Wt;
+    WORD B[4];
 
-    Wt.bword = ((SBox[0][W.bbytes.B0] + SBox[1][W.bbytes.B1]) ^ SBox[2][W.bbytes.B2]) + SBox[3][W.bbytes.B3];
+    for(BYTE i = 0; i < 4; i++)
+    {
+        B[3 - i] = W & 0x00FF;
+        W >>= 8;
+    }
+
+    Wt = ((SBox[0][B[0]] + SBox[1][B[1]]) ^ SBox[2][B[2]]) + SBox[3][B[3]];
 
     return Wt;
 }
