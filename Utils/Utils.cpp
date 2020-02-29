@@ -106,3 +106,17 @@ std::string DayToStr(int day, bool type)
     }
 }
 
+
+DWORD GetFileSize(std::ifstream& file)
+{
+    DWORD pos, size;
+
+    pos  = file.tellg();
+    file.seekg(0,   std::ios_base::end);
+
+    size = file.tellg();
+    file.seekg(pos, std::ios_base::beg);
+
+    return size;
+}
+

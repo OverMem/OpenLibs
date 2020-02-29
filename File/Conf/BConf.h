@@ -1,13 +1,13 @@
-#ifndef SCONF_H
-#define SCONF_H
+#ifndef BCONF_H
+#define BCONF_H
 
-#include <vector>
+#include "OPEN/Utils.h"
 #include "BasicConf.h"
 
-class SConf : public BasicConf
+class BConf : public BasicConf
 {
 public:
-    SConf();
+    BConf();
 
     ConfErr Load();
     ConfErr Save();
@@ -15,16 +15,21 @@ public:
     ConfErr SetArg(std::string Arg, std::string  value);
     ConfErr GetArg(std::string Arg, std::string& value);
 
+    ConfErr AddCmd(WORD cmd, std::string Arg);
+    ConfErr DelCmd(WORD cmd);
+
     ConfErr SetFile(std::string file);
 
-    ~SConf();
+    ~BConf();
 
 private:
     bool IsExist(std::string Arg);
     int GetIndex(std::string Arg);
+    WORD GetCommand(std::string Arg);
 
     std::vector<ConfDesc> config;
+    std::map<WORD, std::string> command;
 };
 
-#endif // SCONF_H
+#endif // BCONF_H
 

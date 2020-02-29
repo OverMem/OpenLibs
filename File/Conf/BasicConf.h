@@ -17,6 +17,12 @@ enum class ConfErr : sBYTE
     NoErr =  0
 };
 
+typedef struct
+{
+    std::string Key;
+    std::string Value;
+}ConfDesc;
+
 class BasicConf
 {
 public:

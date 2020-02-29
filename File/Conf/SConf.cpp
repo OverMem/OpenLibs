@@ -9,7 +9,7 @@ SConf::SConf() : BasicConf()
 ConfErr SConf::Load()
 {
     std::string line, key, value;
-    SConfDesc temp;
+    ConfDesc temp;
     std::regex pattern   { "^[A-Za-z_]+[ \t]*=[ \t]*[A-Za-z]+|[0-9]+|[0-9]+\.([0-9])+$" };
     std::regex pattern_c { "#[:print:\t]" };
 
@@ -59,7 +59,7 @@ ConfErr SConf::Save()
     {
         for(int i = 0; i < config.size(); i++)
         {
-            line = config[i].Key + " = " + config[i].Value;
+            line = config[i].Key + " = " + config[i].Value + "\n";
 
             file_t << line;
         }
@@ -77,7 +77,7 @@ ConfErr SConf::SetArg(std::string Arg, std::string  value)
     if(IsExist(Arg)) config[GetIndex(Arg)].Value = value;
     else
     {
-        SConfDesc temp;
+        ConfDesc temp;
 
         temp.Key   = Arg;
         temp.Value = value;
@@ -99,7 +99,7 @@ ConfErr SConf::GetArg(std::string Arg, std::string& value)
 
 bool SConf::IsExist(std::string Arg)
 {
-    std::vector<SConfDesc>::iterator it;
+    std::vector<ConfDesc>::iterator it;
 
     for(it = config.begin(); it != config.end(); ++it)
     {
