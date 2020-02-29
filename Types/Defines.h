@@ -2,6 +2,7 @@
 #define TYPES_H
 
 #include <cstdint>
+#include <inttypes.h>
 #include <iostream>
 
 typedef struct Bit Bit;
@@ -50,6 +51,12 @@ typedef enum
     LENDIAN = 0,
     BENDIAN = 1
 }Endian;
+/*
+std::ostream& operator<<(std::ostream& o_str, SWORD n);
+std::istream& operator>>(std::istream& i_str, SWORD n);
 
+std::ostream& operator<<(std::ostream& o_str, sSWORD n);
+std::istream& operator>>(std::istream& i_str, sSWORD n);
+*/
 #endif // TYPES_H
 

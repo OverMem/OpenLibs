@@ -123,3 +123,49 @@ std::istream& operator>>(std::istream& is, Bit& b)
     return is;
 }
 
+
+/*
+std::ostream& operator<<(std::ostream& o_str, SWORD n)
+{
+    std::string temp_s;
+    int digit;
+
+    do
+    {
+        digit  = n % 10;
+        temp_s = std::to_string(digit) + temp_s;
+        n = (n - digit) / 10;
+    }while(n != 0);
+
+    return o_str << temp_s;
+}
+
+std::istream& operator>>(std::istream& i_str, SWORD n)
+{
+    std::string temp_s;
+    int digit;
+
+
+}
+
+
+std::ostream& operator<<(std::ostream& o_str, sSWORD n)
+{
+    std::string temp_s;
+    int digit;
+
+    do
+    {
+        digit  = n % 10;
+        temp_s = std::to_string(digit) + temp_s;
+        n = (n - digit) / 10;
+    }while(n != 0);
+
+    return o_str << temp_s;
+}
+
+std::istream& operator>>(std::istream& i_str, sSWORD n)
+{
+    
+}
+*/

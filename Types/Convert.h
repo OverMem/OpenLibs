@@ -1,35 +1,44 @@
 #ifndef CONVERT_H
 #define CONVERT_H
 
-#include <sstream>
 #include "Defines.h"
 
-template<typename T>
-T toNbr(std::string Str);
-template<typename T>
-std::string toStr(T Nbr);
-
+int nval(const char c);
 
 template<typename T>
-T ToNbr(std::string Str)
+T toNbr(std::string Str, BYTE base = 10);
+template<typename T>
+std::string toStr(T Nbr, BYTE base = 10);
+
+template<typename T>
+T toNbr(std::string Str, BYTE base)
 {
-    T Nbr;
-    std::istringstream i_str;
+    const char *temp_s = Str.c_str();
+    int Len            = strlen(temp_s);
+    int Power          = 1;
+    T   Nbr            = 0;
 
-    i_str.str(Str);
-    i_str >> Nbr;
+    for(int i = Len - 1; i >= 0; i--)
+    {
+        Nbr   += nval(temp_s[i]) * Power;
+        Power *= base;
+    }
 
     return Nbr;
 }
 
 template<typename T>
-std::string toStr(T Nbr)
+std::string toStr(T Nbr, BYTE base)
 {
     std::string Str;
-    std::ostringstream o_str;
+    int digit;
 
-    o_str << Nbr;
-    Str = o_str.str();
+    do
+    {
+        digit = Nbr % base;
+        Str   = std::to_string(digit) + Str;
+        Nbr   = (Nbr - digit) / base;
+    }while(Nbr != 0);
 
     return Str;
 }
