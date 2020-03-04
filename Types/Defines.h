@@ -1,6 +1,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#include <string>
 #include <cstdint>
 #include <inttypes.h>
 #include <iostream>
@@ -18,6 +19,8 @@ typedef int16_t     sWORD;
 typedef int32_t    sDWORD;
 typedef int64_t    sQWORD;
 typedef __int128_t sSWORD;
+
+typedef std::string Str;
 
 struct Bit
 {
