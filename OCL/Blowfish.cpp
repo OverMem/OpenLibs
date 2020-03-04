@@ -1,14 +1,5 @@
 #include "Blowfish.h"
 
-/*
-BWord& BWord::operator=(const BWord& b)
-{
-    bword = b.bword;
-
-    return *this;
-}
-*/
-
 Blowfish::Blowfish(BKey key)
 {
     for(BYTE i = 0; i < 14; i++) Key[i] = key[i];
@@ -17,7 +8,7 @@ Blowfish::Blowfish(BKey key)
 }
 
 
-void Blowfish::BEncrypt(BData plain,  BData& cipher)
+void Blowfish::Encrypt(BData plain,  BData& cipher)
 {
     DWORD w1 = plain[0], w2 = plain[1], temp;
 
@@ -42,7 +33,7 @@ void Blowfish::BEncrypt(BData plain,  BData& cipher)
     cipher[1] = w2;
 }
 
-void Blowfish::BDecrypt(BData cipher, BData& plain)
+void Blowfish::Decrypt(BData cipher, BData& plain)
 {
     DWORD w1 = cipher[0], w2 = cipher[1], temp;
 
