@@ -61,7 +61,7 @@ ConfErr BConf::Save()
 
     if(File == "DEFAULT_CONF") return ConfErr::Name;
 
-    std::ofstream file_t(File.c_str(), std::ios::in | std::ios::binary | std::ios::trunc);
+    std::ofstream file_t(File.c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
 
     if(!file_t.is_open()) return ConfErr::File;
     else
@@ -70,6 +70,9 @@ ConfErr BConf::Save()
         {
             temp_c = GetCommand(config[i].Key);
             file_t.write((char *)&temp_c, 2);
+
+            size_v = (WORD)config[i].Value.length();
+            file_t.write((char *)&size_v, 2);
 
             for(std::string::size_type j = 0; j < config[i].Value.length(); j++)
             {
@@ -127,12 +130,16 @@ ConfErr BConf::AddCmd(WORD cmd, std::string Arg)
     if(command.find(cmd) != command.end()) return ConfErr::Exist;
 
     command[cmd] = Arg;
+
+    return ConfErr::NoErr;
 }
 
 ConfErr BConf::DelCmd(WORD cmd)
 {
     if(command.find(cmd) == command.end()) return ConfErr::Exist;
     else                                   command.erase(cmd);
+
+    return ConfErr::NoErr;
 }
 
 

@@ -71,8 +71,10 @@ int Loggr::Save(SWORD& n, std::string msg)
     o_str << std::put_time(&tm_s, "%c %Z");
 
     temp.msg    = msg;
-    temp.time_s = o_str.str();
+    temp.time_s = "[ " + o_str.str() + " ]";
     temp.nlog   = nlogs;
+
+    logs.push_back(temp);
 
     nlogs++;
     n = nlogs - 1;
