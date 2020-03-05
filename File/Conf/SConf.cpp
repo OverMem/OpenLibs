@@ -29,6 +29,11 @@ ConfErr SConf::Load()
                 getline(i_str, key,   '=');
                 getline(i_str, value, '=');
 
+                for(std::string::size_type i = 0; i < key.length(); ++i)
+                    if(key[i] == ' ') key.erase(i, 1);
+                for(std::string::size_type i = 0; i < value.length(); ++i)
+                    if(value[i] == ' ') value.erase(i, 1);
+
                 temp.Key   = key;
                 temp.Value = value;
 
