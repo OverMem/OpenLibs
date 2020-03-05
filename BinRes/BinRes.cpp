@@ -11,20 +11,9 @@ ResDesc& ResDesc::operator=(ResDesc& a)
 
 bool operator==(ResDesc& a, ResDesc& b)
 {
-	if(a.begin != b.begin)
-	{
-		return false;
-	}
-
-	if(a.end != b.end)
-	{
-		return false;
-	}
-
-	if(a.size != b.size)
-	{
-		return false;
-	}
+	if(a.begin != b.begin) return false;
+	if(a.end != b.end)     return false;
+	if(a.size != b.size)   return false;
 
 	return true;
 }
@@ -42,10 +31,7 @@ int BinRes::AddRes(ResDesc desc)
 
 	ret = GetIndex(desc);
 
-	if(ret != -1)
-	{
-		return ret;
-	}
+	if(ret != -1) return ret;
 
 	index = Forward;
 
@@ -58,10 +44,7 @@ int BinRes::AddRes(ResDesc desc)
 
 int BinRes::DelRes(int num)
 {
-	if(Res.find(num) == Res.end())
-	{
-		return 1;
-	}
+	if(Res.find(num) == Res.end()) return 1;
 
 	Res.erase(num);
 
@@ -73,10 +56,7 @@ int BinRes::Read(int num, char& rd, int cursor)
 {
 	char *cur;
 
-	if(Res.find(num) == Res.end())
-	{
-		return 1;
-	}
+	if(Res.find(num) == Res.end()) return 1;
 
 	cur = (cursor > (long int)Res[num].size) ? Res[num].size - 1 : Res[num].begin + cursor;
 
@@ -90,19 +70,14 @@ int BinRes::Read(int num, char* rd)
 	char *cursor;
 	std::string temp;
 
-	if(Res.find(num) == Res.end())
-	{
-		return 1;
-	}
+	if(Res.find(num) == Res.end()) return 1;
 
 	cursor = Res[num].begin;
 	temp   = "";
 
 	rd = (char *)malloc((long int)Res[num].size * sizeof(char));
-	if(rd == NULL)
-	{
-		return -1;
-	}
+
+	if(rd == NULL) return -1;
 
 	for(long int i = 0; i < (long int)Res[num].size; i++)
 	{
@@ -117,10 +92,7 @@ int BinRes::Read(int num, std::string& rd)
 	char *cursor;
 	std::string temp;
 
-	if(Res.find(num) == Res.end())
-	{
-		return 1;
-	}
+	if(Res.find(num) == Res.end()) return 1;
 
 	cursor = Res[num].begin;
 	temp   = "";
