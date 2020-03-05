@@ -3,11 +3,16 @@
 int Callback(void *data, int ncol, char **field, char **col)
 {
     std::cout << (char *)data <<std::endl;
+    std::string kvalue;
 
     R.clear();
     for(int i = 0; i < ncol; i++)
     {
-        R.push_back(field[i] ? field[i] : "NULL");
+        kvalue  = col[i];
+        kvalue += " = ";
+        kvalue += field[i] ? field[i] : "Nothing";
+
+        R.push_back(kvalue);
     }
 
     return 0;
@@ -108,7 +113,7 @@ bool DataBase::Select(std::string table, std::string field, std::string where, R
     }
 
     row.clear();
-    for(int i = 0; i < R.size(); i++)
+    for(Row::size_type i = 0; i < R.size(); i++)
     {
         row.push_back(R[i]);
     }
@@ -144,7 +149,7 @@ bool DataBase::Insert(std::string table, std::string field, Row values)
 
     cmd = "INSERT INTO " + table + " (" + field + ") VALUES (";
 
-    for(int i = 0; i < values.size(); i++)
+    for(Row::size_type i = 0; i < values.size(); i++)
     {
         cmd += values[i];
 
@@ -164,6 +169,44 @@ bool DataBase::Insert(std::string table, std::string field, Row values)
 
         return false;
     }
+
+    return true;
+}
+
+bool DataBase::Delete(std::string table, std::string where, std::string value)
+{
+    int ret;
+    char *sql;
+
+    cmd = "DELETE from " + table + " where " + where + "=" + value;
+
+    sql = (char *)cmd.c_str();
+    ret = sqlite3_exec(db, sql, Callback, 0, &err);
+
+    if(ret != SQLITE_OK)
+    {
+        std::cerr << "Can't delete * into " << table << "in " << where << "=" << value << ": " << err <<std::endl;
+        sqlite3_free(err);
+
+        return false;
+    }
+
+    return true;
+}
+
+bool DataBase::Search(std::string table, std::string where, std::string value, bool& exist)
+{
+    std::string where_t;
+    bool ret;
+    Row rw;
+
+    where_t = where + " = " + value;
+
+    ret = Select(table, "*", where_t, rw);
+    if(!ret) return false;
+
+    if(rw.size() == 0) exist = false;
+    else               exist = true;
 
     return true;
 }

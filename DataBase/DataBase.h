@@ -26,6 +26,8 @@ public:
     bool Select(std::string table, std::string field, std::string where, Row& row);
     bool Update(std::string table, std::string field, std::string where, std::string value);
     bool Insert(std::string table, std::string field, Row values);
+    bool Delete(std::string table, std::string where, std::string value);
+    bool Search(std::string table, std::string where, std::string value, bool& exist);
 
     ~DataBase();
 
