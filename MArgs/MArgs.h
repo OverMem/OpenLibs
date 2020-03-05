@@ -8,12 +8,12 @@
 class MArgs
 {
 public:
-    MArgs(int nargs, char *args);
+    MArgs(int nargs, char *args[]);
     
     int GetArg(std::string name, std::string& value);
 
 private:
-    bool isExist(std::string name);
+    bool IsExist(std::string name);
 
     std::map<std::string, std::string> Arg;
 };

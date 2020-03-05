@@ -11,12 +11,12 @@ MArgs::MArgs(int nargs, char *args[])
 
         if(std::regex_match(temp, pattern) == true)
         {
-            std::stringstream Strs(temp);
+            std::istringstream Strs(temp);
 
             getline(Strs, key, '=');
             getline(Strs, value, '=');
 
-	    Arg[key] = value;
+	        Arg[key] = value;
         }
     }
 }
@@ -24,13 +24,13 @@ MArgs::MArgs(int nargs, char *args[])
     
 int MArgs::GetArg(std::string name, std::string& value)
 {
-    if(isExist(name)) value = Arg[name];
+    if(IsExist(name)) value = Arg[name];
     else              return 1;
 
     return 0;
 }
 
-bool MArgs::isExist(std::string name)
+bool MArgs::IsExist(std::string name)
 {
     if(Arg.find(name) != Arg.end()) return true;
     else                            return false;
