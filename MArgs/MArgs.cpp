@@ -1,5 +1,10 @@
 #include "MArgs.h"
 
+/*!
+ * @brief Constructor
+ *
+ * Constructor of class MArgs.
+ */
 MArgs::MArgs(int nargs, char *args[])
 {
     std::string temp, key, value;
@@ -21,7 +26,16 @@ MArgs::MArgs(int nargs, char *args[])
     }
 }
 
-    
+
+/*!
+ * @brief Get an argument
+ *
+ * Metho to get an arg by name.
+ *
+ * @param[in] name : name of arg
+ * @param[out] value : string reference
+ * @return 0 if arg exist, 1 else
+ */
 int MArgs::GetArg(std::string name, std::string& value)
 {
     if(IsExist(name)) value = Arg[name];
