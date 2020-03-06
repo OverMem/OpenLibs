@@ -1,10 +1,10 @@
 #include "BinRes.h"
 
 /*!
- * @brief Opérateur d'affectation de la structure ResDesc
+ * @brief ResDesc struct affect operator
  *
- * @param a : La ressource à affecter
- * @return Une référence sur une ResDesc
+ * @param a : ResDesc to affect
+ * @return ResDesc reference
  */
 ResDesc& ResDesc::operator=(ResDesc& a)
 {
@@ -16,11 +16,11 @@ ResDesc& ResDesc::operator=(ResDesc& a)
 }
 
 /*!
- * @brief Opérateur d'égalité entre ResDesc
+ * @brief ResDesc equality operator
  *
- * @param a : ResDesc à gauche
- * @param b : ResDesc à droite
- * @return true si elles sont égales, false sinon
+ * @param a : left ResDesc
+ * @param b : right ResDesc
+ * @return true if are equal, false else
  */
 bool operator==(ResDesc& a, ResDesc& b)
 {
@@ -32,9 +32,9 @@ bool operator==(ResDesc& a, ResDesc& b)
 }
 
 /*!
- * @brief Constructeur
+ * @brief Constructor
  *
- * Constructeur de la classe BinRes
+ * Constructor of class BinRes.
  */
 BinRes::BinRes()
 {
@@ -43,12 +43,12 @@ BinRes::BinRes()
 
 
 /*!
- * @brief Ajout d'une ressource
+ * @brief Add a ressource
  *
- * Méthode permettant d'ajouter une ressource au conteneur.
+ * Method to add a ressource in store.
  *
- * @param desc : Ressource à ajouter
- * @return index de la ressource à ajouter
+ * @param desc : ResDesc to add
+ * @return index of res
  */
 int BinRes::AddRes(ResDesc desc)
 {
@@ -69,12 +69,12 @@ int BinRes::AddRes(ResDesc desc)
 }
 
 /*!
- * @brief Suppression d'une ressource
+ * @brief Delete a ressource
  *
- * Méthode permettant de supprimer une ressource du conteneur.
+ * Method to delete a ressource in store.
  *
- * @param num : index de la ressource
- * @return 1 si elle n'existait pas, 0 sinon
+ * @param num : index of res
+ * @return 1 if res not exist, 0 else
  */
 int BinRes::DelRes(int num)
 {
@@ -87,14 +87,14 @@ int BinRes::DelRes(int num)
 
 
 /*!
- * @brief Lecture d'une ressource
+ * @brief Read a ressource
  *
- * Méthode permettant de lire un octet.
+ * Method to read a byte.
  *
- * @param num    : index de la ressource
- * @param rd     : référence vers l'octet lu
- * @param cursor : position de lecture
- * @return 0 si réussite, 1 sinon
+ * @param[in] num    : index of res
+ * @param[out] rd    : byte read reference
+ * @param[in] cursor : read position
+ * @return 0 if no error, 1 else
  */
 int BinRes::Read(int num, char& rd, int cursor)
 {
@@ -110,13 +110,13 @@ int BinRes::Read(int num, char& rd, int cursor)
 }
 
 /*!
- * @brief Lecture d'une ressource
+ * @brief Read a ressource
  *
- * Méthode permettant de la lire en entier (C style).
+ * Method read all in bytes.
  *
- * @param num : index de la ressource
- * @param rd  : pointeur vers les octets lu (ne doit pas être alloué)
- * @return 0 si réussite
+ * @param[in] num : index of res
+ * @param[out] rd : Bytes read pointer (don't allocated)
+ * @return 0 if no error
  */
 int BinRes::Read(int num, char* rd)
 {
@@ -141,13 +141,13 @@ int BinRes::Read(int num, char* rd)
 }
 
 /*!
- * @brief Lecture d'une ressource
+ * @brief Read a ressource
  *
- * Méthode permettant de la lire en entier (C++ style).
+ * Method to read all in string.
  *
- * @param num : index de la ressource
- * @param rd  : référence vers la chaîne lu
- * @return 0 si réussite, 1 sinon
+ * @param[in] num : index of res
+ * @param[out] rd : string read reference
+ * @return 0 if no error, 1 else
  */
 int BinRes::Read(int num, std::string& rd)
 {

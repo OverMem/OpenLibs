@@ -3,7 +3,7 @@
 
 /*!
  * @file BinRes.h
- * @brief Lecteur de ressources binaires
+ * @brief Binary ressources reader
  * @author RemsPrgm
  * @version 1.0
  */
@@ -15,15 +15,15 @@ typedef struct ResDesc ResDesc;
 
 /*!
  * @struct ResDesc
- * @brief Pointeurs sur une ressource
+ * @brief Res pointers
  *
- * ResDesc est une structure représentant une ressource par des pointeurs.
+ * ResDesc is a struct represent a ressource by pointers.
  */
 struct ResDesc
 {
-	char *begin; /*!< Pointeur de début. */
-	char *end;   /*!< Pointeur de fin. */
-	char *size;  /*!< Pointeur sur la taille. */
+	char *begin; /*!< Begin ointer. */
+	char *end;   /*!< End pointer. */
+	char *size;  /*!< Size pointer. */
 
     ResDesc& operator=(ResDesc& a);
 };
@@ -32,9 +32,9 @@ bool operator==(ResDesc& a, ResDesc& b);
 
 /*!
  * @class BinRes
- * @brief Classe représentant un conteneur à ressources
+ * @brief Class represent a ressource storage
  *
- * La classe gère le stockage et la lecture de celles-ci.
+ * Class manage the storage and reading by use ResDesc.
  */ 
 class BinRes
 {
