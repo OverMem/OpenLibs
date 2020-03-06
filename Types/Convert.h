@@ -1,6 +1,12 @@
 #ifndef CONVERT_H
 #define CONVERT_H
 
+/*!
+ * @file Convert.h
+ * @brief Convert functions (string => types)
+ * @author RemsPrgm
+ * @version 1.0
+ */
 #include "Defines.h"
 
 int nval(const char c);
@@ -10,13 +16,22 @@ T toNbr(std::string Str, BYTE base = 10);
 template<typename T>
 std::string toStr(T Nbr, BYTE base = 10);
 
+/*!
+ * @fn T toNbr(std::string Str, BYTE base)
+ * @brief Convert string to number
+ *
+ * Function for convert a string in any base format to number.
+ *
+ * @param[in] Str  : string to convert
+ * @param[in] base : base repr of string
+ * @return number converted
+ */
 template<typename T>
 T toNbr(std::string Str, BYTE base)
 {
-    const char *temp_s = Str.c_str();
-    int Len            = strlen(temp_s);
-    int Power          = 1;
-    T   Nbr            = 0;
+    int Len = Str.length();
+    T Power = 1;
+    T Nbr   = 0;
 
     for(int i = Len - 1; i >= 0; i--)
     {
@@ -27,6 +42,16 @@ T toNbr(std::string Str, BYTE base)
     return Nbr;
 }
 
+/*!
+ * @fn std::string toStr(T Nbr, BYTE base)
+ * @brief Convert number to string
+ *
+ * Function for convert a number to string in any base format.
+ *
+ * @param[in] Nbr  : nbr to convert
+ * @param[in] base : base repr of string
+ * @return string converted
+ */
 template<typename T>
 std::string toStr(T Nbr, BYTE base)
 {

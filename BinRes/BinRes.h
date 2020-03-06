@@ -21,7 +21,7 @@ typedef struct ResDesc ResDesc;
  */
 struct ResDesc
 {
-	char *begin; /*!< Begin ointer. */
+	char *begin; /*!< Begin pointer. */
 	char *end;   /*!< End pointer. */
 	char *size;  /*!< Size pointer. */
 

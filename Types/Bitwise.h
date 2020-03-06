@@ -1,6 +1,12 @@
 #ifndef BITWISE_H
 #define BITWISE_H
 
+/*!
+ * @file Bitwise.h
+ * @brief Some functions for manipulate bits in types
+ * @author RemsPrgm
+ * @version 1.0
+ */
 #include "Defines.h"
 
 Endian GetEndianness();
