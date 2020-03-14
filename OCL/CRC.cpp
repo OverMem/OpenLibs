@@ -47,7 +47,7 @@ WORD  CRC::CRC16(std::vector<BYTE> data)
             byte = data[i];
             crc ^= byte << 8;
 
-            for(BYTE j = 0; j < 8; +j)
+            for(BYTE j = 0; j < 8; ++j)
             {
                 mix = crc & 0x8000;
                 crc = (crc << 1);
