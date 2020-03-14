@@ -22,12 +22,6 @@ typedef __int128_t sSWORD;
 
 typedef std::string Str;
 
-/*!
- * @struct Bit
- * @brief Bit define
- *
- * Bit is a struct who represent a single bit and define a lot of operators for use it.
- */
 struct Bit
 {
     Bit& operator =(Bit& b);
@@ -38,7 +32,7 @@ struct Bit
     Bit& operator~ ();
 
 private:
-    bool bit; /*!< Bit value. */
+    bool bit;
 
 friend Bit operator|(Bit& b1, Bit& b2);
 friend Bit operator&(Bit& b1, Bit& b2);
@@ -55,16 +49,10 @@ friend std::ostream& operator<<(std::ostream& os, Bit  b);
 friend std::istream& operator>>(std::istream& is, Bit& b);
 };
 
-/*!
- * @enum Endian
- * @brief Endiannes define
- *
- * Endian is an enum who represent a type of endianness.
- */
 typedef enum
 {
-    LENDIAN = 0, /*!< Little endian. */
-    BENDIAN = 1  /*!< Big endian. */
+    LENDIAN = 0,
+    BENDIAN = 1
 }Endian;
 
 #endif // TYPES_H

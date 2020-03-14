@@ -1,41 +1,22 @@
 #ifndef BINRES_H
 #define BINRES_H
 
-/*!
- * @file BinRes.h
- * @brief Binary ressources reader
- * @author RemsPrgm
- * @version 1.0
- */
-
 #include <string>
 #include <map>
 
 typedef struct ResDesc ResDesc;
 
-/*!
- * @struct ResDesc
- * @brief Res pointers
- *
- * ResDesc is a struct represent a ressource by pointers.
- */
 struct ResDesc
 {
-	char *begin; /*!< Begin pointer. */
-	char *end;   /*!< End pointer. */
-	char *size;  /*!< Size pointer. */
+	char *begin;
+	char *end;
+	char *size;
 
     ResDesc& operator=(ResDesc& a);
 };
 
 bool operator==(ResDesc& a, ResDesc& b);
 
-/*!
- * @class BinRes
- * @brief Class represent a ressource storage
- *
- * Class manage the storage and reading by use ResDesc.
- */ 
 class BinRes
 {
 public:

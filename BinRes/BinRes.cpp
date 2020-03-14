@@ -1,11 +1,5 @@
 #include "BinRes.h"
 
-/*!
- * @brief ResDesc struct affect operator
- *
- * @param a : ResDesc to affect
- * @return ResDesc reference
- */
 ResDesc& ResDesc::operator=(ResDesc& a)
 {
 	begin = a.begin;
@@ -15,13 +9,6 @@ ResDesc& ResDesc::operator=(ResDesc& a)
 	return *this;
 }
 
-/*!
- * @brief ResDesc equality operator
- *
- * @param a : left ResDesc
- * @param b : right ResDesc
- * @return true if are equal, false else
- */
 bool operator==(ResDesc& a, ResDesc& b)
 {
 	if(a.begin != b.begin) return false;
@@ -31,25 +18,12 @@ bool operator==(ResDesc& a, ResDesc& b)
 	return true;
 }
 
-/*!
- * @brief Constructor
- *
- * Constructor of class BinRes.
- */
 BinRes::BinRes()
 {
 	Forward = 0;
 }
 
 
-/*!
- * @brief Add a ressource
- *
- * Method to add a ressource in store.
- *
- * @param desc : ResDesc to add
- * @return index of res
- */
 int BinRes::AddRes(ResDesc desc)
 {
 	int ret;
@@ -68,14 +42,6 @@ int BinRes::AddRes(ResDesc desc)
 	return index;
 }
 
-/*!
- * @brief Delete a ressource
- *
- * Method to delete a ressource in store.
- *
- * @param num : index of res
- * @return 1 if res not exist, 0 else
- */
 int BinRes::DelRes(int num)
 {
 	if(Res.find(num) == Res.end()) return 1;
@@ -86,16 +52,6 @@ int BinRes::DelRes(int num)
 }
 
 
-/*!
- * @brief Read a ressource
- *
- * Method to read a byte.
- *
- * @param[in] num    : index of res
- * @param[out] rd    : byte read reference
- * @param[in] cursor : read position
- * @return 0 if no error, 1 else
- */
 int BinRes::Read(int num, char& rd, int cursor)
 {
 	char *cur;
@@ -109,15 +65,6 @@ int BinRes::Read(int num, char& rd, int cursor)
 	return 0;
 }
 
-/*!
- * @brief Read a ressource
- *
- * Method read all in bytes.
- *
- * @param[in] num : index of res
- * @param[out] rd : Bytes read pointer (don't allocated)
- * @return 0 if no error
- */
 int BinRes::Read(int num, char* rd)
 {
 	char *cursor;
@@ -140,15 +87,6 @@ int BinRes::Read(int num, char* rd)
 	return 0;
 }
 
-/*!
- * @brief Read a ressource
- *
- * Method to read all in string.
- *
- * @param[in] num : index of res
- * @param[out] rd : string read reference
- * @return 0 if no error, 1 else
- */
 int BinRes::Read(int num, std::string& rd)
 {
 	char *cursor;

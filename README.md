@@ -31,7 +31,7 @@ MArgs load and store main arguments and permit to read these in ``` std::string 
 
 ### StrTime
 
-StrTime get a timestamp and use ``` strftime() ``` to represent the time in system language.
+StrTime get a timestamp and use ``` strftime() ``` to represent the time in french or english format.
 
 ### Utils
 
@@ -57,6 +57,7 @@ OCL is OPEN Cryptographic Library. It include these algorithms:
 * SHA256
 * Blowfish
 * RSA
+* CRC (Ansi, CCITT, Ethernet)
 * Random generator (Entropy => SHA256 => DWORD cryptographic pseudo-random numbers)
 
 

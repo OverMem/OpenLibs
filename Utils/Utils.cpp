@@ -1,39 +1,15 @@
 #include "Utils.h"
 
-/*!
- * @brief Convert ASCII to char
- *
- * Function for convert a byte ASCII value to a character.
- *
- * @param[in] ascii : ASCII value
- * @return character converted
- */
 char ToChar(BYTE ascii)
 {
 	return (char)ascii;
 }
 
-/*!
- * @brief Convert char to ASCII
- *
- * Function for convert a character to a byte ASCII value, is invert to ToChar().
- *
- * @param[in] c : character to convert
- * @return ASCII byte value
- */
 BYTE ToAscii(char c)
 {
 	return (BYTE)c;
 }
 
-/*!
- * @brief Complete int in [0-9]
- *
- * Function to complete 0-9 integers (1 => 01).
- *
- * @param[in] Nbr : int to complete
- * @return string completed
- */
 std::string CompleteInt(int Nbr)
 {
     std::string complete = "";
@@ -44,14 +20,6 @@ std::string CompleteInt(int Nbr)
 	return complete;
 }
 
-/*!
- * @brief Convert time to string
- *
- * Function for convert tm struct to string represent(fr format)(prefer to use StrTime: fr/en format)
- *
- * @param[in] data : pointer to time
- * @return string formated ([--DD/MM/YYYY hh:mm:ss--]: )
- */
 std::string TmToStr(const struct tm *date)
 {
     std::string Date = "";
@@ -74,15 +42,6 @@ std::string TmToStr(const struct tm *date)
   	return Date;
 }
 
-/*!
- * @brief Convert day to string
- *
- * Function for convert day to a string formated (fr/en format).
- *
- * @param[in] day  : day to convert
- * @param[in] type : format type (0 for en / 1 for fr)
- * @return string format converted
- */
 std::string DayToStr(int day, bool type)
 {
 	if(type == 0)
@@ -148,14 +107,6 @@ std::string DayToStr(int day, bool type)
 }
 
 
-/*!
- * @brief Get size of file
- *
- * Function to get the size of a file in bytes.
- *
- * @param[in] file : ifstream reference
- * @return size of file
- */
 DWORD GetFileSize(std::ifstream& file)
 {
     DWORD pos, size;
