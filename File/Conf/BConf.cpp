@@ -66,7 +66,7 @@ ConfErr BConf::Save()
     if(!file_t.is_open()) return ConfErr::File;
     else
     {
-        for(int i = 0; i < config.size(); i++)
+        for(std::vector<ConfDesc>::size_type i = 0; i < config.size(); i++)
         {
             temp_c = GetCommand(config[i].Key);
             file_t.write((char *)&temp_c, 2);
@@ -113,6 +113,8 @@ ConfErr BConf::SetArg(std::string Arg, std::string  value)
 
         return ConfErr::Exist;
     }
+
+    return ConfErr::NoErr;
 }
 
 ConfErr BConf::GetArg(std::string Arg, std::string& value)
@@ -157,7 +159,7 @@ bool BConf::IsExist(std::string Arg)
 
 int BConf::GetIndex(std::string Arg)
 {
-    for(int i = 0; i < config.size(); i++)
+    for(std::vector<ConfDesc>::size_type i = 0; i < config.size(); i++)
     {
         if(config[i].Key == Arg)
         {

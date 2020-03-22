@@ -16,6 +16,7 @@ T toNbr(std::string Str, BYTE base)
     int Len = Str.length();
     T Power = 1;
     T Nbr   = 0;
+    const char* temp_s = Str.c_str();
 
     for(int i = Len - 1; i >= 0; i--)
     {

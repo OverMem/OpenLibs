@@ -77,7 +77,7 @@ bool operator==(Bit b1, Bit b2)
 
 bool operator!=(Bit b1, Bit b2)
 {
-    return ~(b1 == b2);
+    return !(b1 == b2);
 }
 
 bool operator==(Bit b1, bool b2)
@@ -87,7 +87,7 @@ bool operator==(Bit b1, bool b2)
 
 bool operator!=(Bit b1, bool b2)
 {
-    return ~(b1 == b2);
+    return !(b1 == b2);
 }
 
 bool operator==(bool b1, Bit b2)
@@ -97,7 +97,7 @@ bool operator==(bool b1, Bit b2)
 
 bool operator!=(bool b1, Bit b2)
 {
-    return ~(b1 == b2);
+    return !(b1 == b2);
 }
 
 

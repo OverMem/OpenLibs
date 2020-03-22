@@ -81,7 +81,7 @@ void Blowfish::GenKeys()
 
     for(BYTE i = 0; i < 18; i += 2)
     {
-        BEncrypt(temp_p, temp_c);
+        Encrypt(temp_p, temp_c);
 
         P[i]     = temp_c[0];
         P[i + 1] = temp_c[1];
@@ -94,7 +94,7 @@ void Blowfish::GenKeys()
     {
         for(WORD j = 0; j < 256; j += 2)
         {
-            BEncrypt(temp_p, temp_c);
+            Encrypt(temp_p, temp_c);
 
             SBox[i][i]     = temp_c[0];
             SBox[i][i + 1] = temp_c[1];

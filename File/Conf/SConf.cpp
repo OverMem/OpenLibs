@@ -10,7 +10,7 @@ ConfErr SConf::Load()
 {
     std::string line, key, value;
     ConfDesc temp;
-    std::regex pattern   { "^[A-Za-z_]+[ \t]*=[ \t]*[A-Za-z]+|[0-9]+|[0-9]+\.([0-9])+$" };
+    std::regex pattern   { "^[A-Za-z_]+[ \t]*=[ \t]*[A-Za-z]+|[0-9]+|[0-9]+\\.([0-9])+$" };
     std::regex pattern_c { "#[:print:\t]" };
 
     if(File == "DEFAULT_CONF") return ConfErr::Name;
@@ -62,7 +62,7 @@ ConfErr SConf::Save()
 
     if(file_t)
     {
-        for(int i = 0; i < config.size(); i++)
+        for(std::vector<ConfDesc>::size_type i = 0; i < config.size(); i++)
         {
             line = config[i].Key + " = " + config[i].Value + "\n";
 
@@ -116,7 +116,7 @@ bool SConf::IsExist(std::string Arg)
 
 int SConf::GetIndex(std::string Arg)
 {
-    for(int i = 0; i < config.size(); i++)
+    for(std::vector<ConfDesc>::size_type i = 0; i < config.size(); i++)
     {
         if(config[i].Key == Arg) return i;
     }
