@@ -48,7 +48,7 @@ File get a log or conf file and store there entity for permit read, write and sa
 
 ### DataBase
 
-DataBase use sqlite3 to send command to a locale database (Insert, Select, ..)
+DataBase use sqlite3 to send command to a locale database (Insert, Select, ...)
 
 ### OCL
 
@@ -64,3 +64,18 @@ OCL is OPEN Cryptographic Library. It include these algorithms:
 ## Coding phylosophy
 
 OpenLibs was coding to respect OPEN Code Standard (a code phylosophy invented by me) who described in pdf sheet in doc directory after install framework.
+
+
+## Compile and Install
+
+For compile and install OpenLibs, you run, in shell, these commands:
+
+```bash
+export LIBS={install-directory}
+make && make doc
+make install
+make install-doc
+```
+With:
+
+* {install-directory}: The directory you want install framework (exemple: /usr).
