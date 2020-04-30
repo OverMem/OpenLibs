@@ -81,15 +81,19 @@ share/OPEN/OSC.pdf, après installation.
 <h2 style="color:#0761b2">Compilation et installation</h2>
 <h3 style="color: #045576">Dépendances</h3>
 
-Les dépendances d'OpenLibs sont fournies dans le dossier .Deps. Pour ceux 
-qui les auraient peut-être déjà installées, les voici: <br/>
+Les dépendances d'OpenLibs sont fournies dans le dossier .Deps (à 
+l'exception d'OpenScripts). Pour ceux qui les auraient peut-être déjà 
+installées, les voici: <br/>
 
 
-| Nom    | Version      | Nom de version | Utilité  |
-|:------:|:------------:|:--------------:|:--------:|
-| GMP    | v6.1.2       | Release        | RSA      |
-| SFML   | v2.5.1       | Release        | Random   |
-| SQLite | 202002271621 | Snapshot       | DataBase |
+| Nom         | Version      | Nom de version | Utilité  |
+|:-----------:|:------------:|:--------------:|:--------:|
+| GMP         | v6.1.2       | Release        | RSA      |
+| SFML        | v2.5.1       | Release        | Random   |
+| SQLite      | 202002271621 | Snapshot       | DataBase |
+| OpenScripts | v1.0         | Release        | Makefile |
+
+Pour télécharger OpenScripts, c'est sur le dépôt du même nom dans [mon Github](https://github.com/RemsPrgm/).
 
 <h3 style="color: #045576">Commandes</h3>
 
