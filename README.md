@@ -1,81 +1,107 @@
 <!-- Required extensions: pymdown.betterem, pymdown.tilde, pymdown.emoji, pymdown.tasklist, pymdown.superfences -->
 
-# OpenLibs
+<div style=text-align:center><img src=".Other/Logo.svg" title="Logo OpenLibs" alt="Logo OpenLibs"></div>
 
-## Description
+<h2 style="color:#0761b2">Description</h2>
 
-OpenLibs is a framework which integrate some libraries for simple or particular task.
+OpenLibs est un framework intégrant des bibliothèques simples mais utiles, 
+en C++.
 
-## Libraries
+<h2 style="color:#0761b2">Bibliothèques</h2>
 
-Libraries who integrates in OpenLibs are:
+Les bibliothèques composant le framework sont: 
 
-* BinRes: Read and manage binary ressources
-* MArgs: Get main arguments more simply
-* StrTime: Represent time in ``` std::string ```
-* Utils: Some utils functions
-* Types: Use different types
-* File: Read, write and manage Log and Conf files
-* DataBase: Read, write and manage locale sqlite3 database
-* OCL: Cryptographic lib
+* BinRes: Accéder et lire des ressources binaires
+* MArgs: Accéder aux arguments du main() plus simplement
+* StrTime: Repésenter un temps en ``` std::string ```
+* Utils: Quelques fonctions utiles
+* Types: Définit des types
+* File: Lire et écrire dans des fichiers de logs et de config
+* DataBase: Lire et écrire dans une base de données SQLite3
+* OCL: Bibliothèque cryptographique
 
-## Libraries description
-### BinRes
+<h2 style="color:#0761b2">Description des bibliothèques</h2>
+<h3 style="color: #045576">BinRes</h3>
 
-BinRes permit to read and manage binary ressources who integrates in program.
-It use pointers for represent ressource (It not necessary to know it for use lib)
+BinRes permet de lire et de gérer des ressources au format binaire.
+Elle utilise des pointeurs pour l'accés à celles-ci. Mais ce n'est pas 
+nécessaire de les connaître en profondeur pour pouvoir utiliser cette lib.
 
-### MArgs
+<h3 style="color: #045576">MArgs</h3>
 
-MArgs load and store main arguments and permit to read these in ``` std::string ```.
+MArgs charge et permet de lire les arguments du main dans une 
+``` std::string ```.
 
-### StrTime
+<h3 style="color: #045576">StrTime</h3>
 
-StrTime get a timestamp and use ``` strftime() ``` to represent the time in french or english format.
+StrTime récupère un timestamp et utilise ``` strftime() ``` pour le 
+représenter dans le format français ou anglais.
 
-### Utils
+<h3 style="color: #045576">Utils</h3>
 
-Utils is a simple library for utils functions, for exemple converting char to ascci byte.
+Utils est une bibliothèque simple pour, par exemple, convertir un 
+charactère en valeur ASCII.
 
-### Types
+<h3 style="color: #045576">Types</h3>
 
-Types include typedef for fixed size types (``` BYTE ``` => ``` uint8_t ```), 
-bitwise operations and converting functions (``` std::string ``` <=> types)
+Types utilise des typedefs, pour créer des noms de types fixés 
+(``` BYTE ``` => ``` uint8_t ```), des opérations sur les bits et des 
+conversions (``` std::string ``` <=> types) afin d'utiliser au mieux les 
+types de variables.
 
-### File
+<h3 style="color: #045576">File</h3>
 
-File get a log or conf file and store there entity for permit read, write and save these.
+File accède à un fichier de config ou de logs et permet de le lire ainsi 
+que d'y écrire.
 
-### DataBase
+<h3 style="color: #045576">DataBase</h3>
 
-DataBase use sqlite3 to send command to a locale database (Insert, Select, ...)
+DataBase utilise SQLite3 pour envoyer des commandes à une base de données 
+(Insert, Select, ...) le plus simplement possible.
 
-### OCL
+<h3 style="color: #045576">OCL</h3>
 
-OCL is OPEN Cryptographic Library. It include these algorithms:
+OCL (OPEN Cryptographic Library) inclut ces algorithmes:
 
 * SHA256
 * Blowfish
 * RSA
 * CRC (Ansi, CCITT, Ethernet)
-* Random generator (Entropy => SHA256 => DWORD cryptographic pseudo-random numbers)
+* Générateur aléatoire (Entropie => SHA256 => nombres pseudo-aléatoires 
+cryptographiques de 32 bits (DWORD))
 
 
-## Coding phylosophy
+<h2 style="color:#0761b2">Philosophie de programmation</h2>
 
-OpenLibs was coding to respect OPEN Code Standard (a code phylosophy invented by me) who described in pdf sheet in doc directory after install framework.
+OpenLibs a été codé en respectant l'OPEN Standard Code (une philosophie de 
+programmation inventée par moi) qui est décrite dans le fichier ${LIBS}/
+share/OPEN/OSC.pdf, après installation.
 
 
-## Compile and Install
+<h2 style="color:#0761b2">Compilation et installation</h2>
+<h3 style="color: #045576">Dépendances</h3>
 
-For compile and install OpenLibs, you run, in shell, these commands:
+Les dépendances d'OpenLibs sont fournies dans le dossier .Deps. Pour ceux 
+qui les auraient peut-être déjà installées, les voici: <br/>
+
+
+| Nom    | Version      | Nom de version | Utilité  |
+|:------:|:------------:|:--------------:|:--------:|
+| GMP    | v6.1.2       | Release        | RSA      |
+| SFML   | v2.5.1       | Release        | Random   |
+| SQLite | 202002271621 | Snapshot       | DataBase |
+
+<h3 style="color: #045576">Commandes</h3>
+
+Pour compiler et installer OpenLibs, vous devez éxécuter ces commandes, en 
+shell:
+
 
 ```bash
 export LIBS={install-directory}
-make && make doc
+make
 make install
-make install-doc
 ```
-With:
+Où:
 
-* {install-directory}: The directory you want install framework (exemple: /usr).
+* {install-directory}: Le répertoire d'installation (Ex: export LIBS=/usr)

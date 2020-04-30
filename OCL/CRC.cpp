@@ -17,19 +17,36 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file CRC.cpp
+/// @brief Source de OCL/CRC
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "CRC.h"
 
+/// @brief SetType - Sélection du mode CRC16
+///
+/// @param type: Mode sélectionné (ANSI: true / CCITT: false)
 void SetType(bool type)
 {
     type16 = type;
 }
 
 
+/// @brief CRC - Constructeur
+///
+/// Constructeur de la classe CRC.
 CRC::CRC()
 {
 }
 
 
+/// @brief CRC16 - Calcul du CRC16
+///
+/// @param data: Données à contrôler
+///
+/// @return Valeur CRC16.
 WORD  CRC::CRC16(std::vector<BYTE> data)
 {
     WORD  crc, byte, mix;
@@ -79,6 +96,11 @@ WORD  CRC::CRC16(std::vector<BYTE> data)
     }
 }
 
+/// @brief CRC32 - Calcul du CRC32
+///
+/// @param data: Données à contrôler
+///
+/// @return Valeur CRC32.
 DWORD CRC::CRC32(std::vector<BYTE> data)
 {
     DWORD crc = 0xFFFFFFFF, byte, mix;

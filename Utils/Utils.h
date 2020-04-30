@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Utils.h
+/// @brief Header de Utils
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef UTILS_H
 #define UTILS_H
 

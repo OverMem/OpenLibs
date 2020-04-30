@@ -17,8 +17,20 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file MArgs.cpp
+/// @brief Source de MArgs
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "MArgs.h"
 
+/// @brief MArgs - Constructeur
+///
+/// @param nargs: Paramètre argc du main()
+/// @param args: Paramètre argv du main()
+///
+/// Constructeur de la classe MArgs.
 MArgs::MArgs(int nargs, char *args[])
 {
     std::string temp, key, value;
@@ -41,6 +53,14 @@ MArgs::MArgs(int nargs, char *args[])
 }
 
 
+/// @brief GetArg - Lecture d'un argument
+///
+/// @param name: Nom de l'argument
+/// @param value: Valeur de l'argument
+///
+/// @return 1 si erreur, 0 sinon.
+///
+/// Permet de récupérer la valeur d'un argument.
 int MArgs::GetArg(std::string name, std::string& value)
 {
     if(IsExist(name)) value = Arg[name];

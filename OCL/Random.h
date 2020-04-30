@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Random.h
+/// @brief Header de OCL/Random
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef RANDOM_H
 #define RANDOM_H
 
@@ -29,6 +35,10 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 
 const DWORD time_e = 50;
 
+/// @brief Random - Générateur de nombres pseudo-aléatoires cryptographique
+///
+/// Classe qui génére des nombres pseudo-aléatoires de 32 bits. 
+/// Architecture proche de Fortuna ou Yarrow => générateur cryptographique.
 class Random
 {
 public:

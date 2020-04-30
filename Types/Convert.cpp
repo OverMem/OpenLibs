@@ -17,8 +17,19 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Convert.cpp
+/// @brief Source de Types/Convert
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "Convert.h"
 
+/// @brief nval - Conversion charactère => valeur numéraire
+///
+/// @param c: Charactère à convertir
+///
+/// @return Valeur numéraire correspondante.
 int nval(const char c)
 {
     if(c >= '0' && c <= '9') return c - '0';

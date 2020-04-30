@@ -19,16 +19,38 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "Utils.h"
 
+/// @brief ToChar - Conversion ASCII => char
+///
+/// @param ascii: Valeur ASCII à convertir
+///
+/// @return Charactère correspondant.
+///
+/// Permet de convertir une valeur en ASCII en charactère.
 char ToChar(BYTE ascii)
 {
 	return (char)ascii;
 }
 
+/// @brief ToAscii - Conversion char => ASCII
+///
+/// @param c: Charactère à convertir
+///
+/// @return Valeur ASCII correspondante.
+///
+/// @note Fonction complémentaire à ToChar.
+/// Permet de convertir un charactère en une valeur ASCII.
 BYTE ToAscii(char c)
 {
 	return (BYTE)c;
 }
 
+/// @brief CompleteInt - Complète un int < 10
+///
+/// @param Nbr: Nombre à compléter
+///
+/// @return Chaîne de charactères complétée.
+/// 
+/// Permet de rajouter un 0 devant les nombres de 0 à 9.
 std::string CompleteInt(int Nbr)
 {
     std::string complete = "";
@@ -39,11 +61,19 @@ std::string CompleteInt(int Nbr)
 	return complete;
 }
 
+/// @brief TmToStr - Conversion tm => string
+///
+/// @param date: Structure tm à convertir
+///
+/// @return Chaîne de charactères formatée.
+///
+/// Permet de mettre en forme une struct tm suivant le 
+/// format: [27/04/2020 15:38:33]: .
 std::string TmToStr(const struct tm *date)
 {
     std::string Date = "";
 
-  	Date = "[--" + CompleteInt(date->tm_mday);
+  	Date = "[" + CompleteInt(date->tm_mday);
   	Date += "/"  + CompleteInt(date->tm_mon + 1);
   	Date += "/"  + CompleteInt(date->tm_year + 1900);
   	Date += " "  + CompleteInt(date->tm_hour);
@@ -51,16 +81,25 @@ std::string TmToStr(const struct tm *date)
 
   	if(date->tm_sec == 60)
   	{
-  		Date += ":" + CompleteInt(0) + "--]: ";
+  		Date += ":" + CompleteInt(0) + "]: ";
   	}
   	else
   	{
-  		Date += ":" + CompleteInt(date->tm_sec) + "--]: ";
+  		Date += ":" + CompleteInt(date->tm_sec) + "]: ";
   	}
 
   	return Date;
 }
 
+/// @brief DayToStr - Conversion numéro jour => string
+///
+/// @param day: Numéro du jour à convertir
+/// @param type: Format de la conversion (Fr: 1 / En: 0)
+///
+/// @return Chaîne de charactères convertie.
+///
+/// Permet de convertir un numéro de jour (1-7) en 
+/// chaîne de charactères (Ex: 1 => "Mon" OU "Lun").
 std::string DayToStr(int day, bool type)
 {
 	if(type == 0)
@@ -126,6 +165,13 @@ std::string DayToStr(int day, bool type)
 }
 
 
+/// @brief GetFileSize - Calcul de la taille d'un fichier
+///
+/// @param file: Chemin du fichier
+///
+/// @return Taille du fichier.
+///
+/// Permet de récupérer la taille d'un fichier.
 DWORD GetFileSize(std::ifstream& file)
 {
     DWORD pos, size;

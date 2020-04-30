@@ -17,12 +17,21 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file StrTime.h
+/// @brief Header de StrTime
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef STRTIME_H
 #define STRTIME_H
 
 #include <string>
 #include <ctime>
 
+/// @brief StrTime - Convertisseur temps/string
+///
+/// Classe qui convertit un temps en une chaîne de charactères.
 class StrTime
 {
 public:

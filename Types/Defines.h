@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Defines.h
+/// @brief Header de Types/Defines
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef TYPES_H
 #define TYPES_H
 
@@ -41,6 +47,10 @@ typedef __int128_t sSWORD;
 
 typedef std::string Str;
 
+/// @brief Bit - Représente un bit
+///
+/// Strcture qui définit et permet l'utilisation 
+/// d'un bit.
 struct Bit
 {
     Bit& operator =(Bit& b);
@@ -68,10 +78,13 @@ friend std::ostream& operator<<(std::ostream& os, Bit  b);
 friend std::istream& operator>>(std::istream& is, Bit& b);
 };
 
+/// @brief Endian - Énumération d'endianess
+///
+/// Énumération qui liste les endianess de processeurs.
 typedef enum
 {
-    LENDIAN = 0,
-    BENDIAN = 1
+    LENDIAN = 0, //!< Little endian.
+    BENDIAN = 1  //!< Big endian.
 }Endian;
 
 #endif // TYPES_H

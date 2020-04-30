@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Blowfish.h
+/// @brief Header de OCL/Blowfish
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef BLOWFISH_H
 #define BLOWFISH_H
 
@@ -27,6 +33,9 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 typedef std::array<DWORD, 2>  BData;
 typedef std::array<DWORD, 14> BKey;
 
+/// @brief Blowfish - Encrypteur Blowfish
+///
+/// Classe qui chiffre et déchiffre avec l'algorithme Blowfish.
 class Blowfish
 {
 public:

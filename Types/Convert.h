@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Convert.h
+/// @brief Header de Types/Convert
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef CONVERT_H
 #define CONVERT_H
 
@@ -29,6 +35,13 @@ T toNbr(std::string Str, BYTE base = 10);
 template<typename T>
 std::string toStr(T Nbr, BYTE base = 10);
 
+/// @brief toNbr - Conversion String => Nombre
+///
+/// @tparam T
+/// @param Str: Chaîne de charactères à convertir
+/// @param base: Base numéraire de la chaîne
+///
+/// @return Nombre correspondant.
 template<typename T>
 T toNbr(std::string Str, BYTE base)
 {
@@ -46,6 +59,13 @@ T toNbr(std::string Str, BYTE base)
     return Nbr;
 }
 
+/// @brief toStr - Conversion Nombre => String
+///
+/// @tparam T
+/// @param Nbr: Nombre à convertir
+/// @param base: Base numéraire de la chaîne
+///
+/// @return Chaîne de charactères correspondante.
 template<typename T>
 std::string toStr(T Nbr, BYTE base)
 {

@@ -16,9 +16,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
+/// @file BasicConf.cpp
+/// @brief Source de BasicConf
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
 
 #include "BasicConf.h"
 
+/// @brief BasicConf - Constructeur
+///
+/// Constructeur de la classe BasicConf.
 BasicConf::BasicConf()
 {
     File   = "DEFAULT_CONF";
@@ -28,6 +36,11 @@ BasicConf::BasicConf()
 }
 
 
+/// @brief GetHandle - Lecture du numéro d'objet
+///
+/// @return Numéro de l'objet.
+///
+/// Permet de récupérer le numéro de l'objet instantié.
 QWORD BasicConf::GetHandle()
 {
     return handle;
@@ -40,6 +53,13 @@ QWORD BasicConf::NewHandle()
     return handle_t = handle_t + 1;
 }
 
+/// @brief SetFile - Séléction du fichier de config
+///
+/// @param file: Fichier de configuration
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+///
+/// Permet de sélectionner le fichier de configuration à gérer.
 ConfErr BasicConf::SetFile(std::string file)
 {
     if(file == "DEFAULT_CONF") return ConfErr::Name;
@@ -50,6 +70,9 @@ ConfErr BasicConf::SetFile(std::string file)
 }
 
 
+/// @brief ~BasicConf - Destructeur
+///
+/// Destructeur de la classe BasicConf.
 BasicConf::~BasicConf(void)
 {
     std::cout << "BasicConf handle " << handle << " destructed." <<std::endl;

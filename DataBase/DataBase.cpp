@@ -17,8 +17,22 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file DataBase.cpp
+/// @brief Source de DataBase
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "DataBase.h"
 
+/// @brief Callback - Fonction callback pour SQLite
+///
+/// @param data: Données récupérées
+/// @param ncol: Nombre de colonnes
+/// @param field: Champs récupérées
+/// @param col: colonnes récupérées
+///
+/// @return 0 tout le temps.
 int Callback(void *data, int ncol, char **field, char **col)
 {
     std::cout << (char *)data <<std::endl;
@@ -38,6 +52,11 @@ int Callback(void *data, int ncol, char **field, char **col)
 }
 
 
+/// @brief DataBase - Constructeur
+///
+/// @param file: Fichier de base de données
+///
+/// Constructeur de la classe DataBase.
 DataBase::DataBase(std::string file)
 {
     dbf = file;
@@ -45,6 +64,9 @@ DataBase::DataBase(std::string file)
 }
 
 
+/// @brief Connect - Connection à la base de données
+///
+/// @return False si erreur, true sinon.
 bool DataBase::Connect()
 {
     int ret;
@@ -66,6 +88,7 @@ bool DataBase::Connect()
     return true;
 }
 
+/// @brief Disconnect - Déconnexion de la base de données
 void DataBase::Disconnect()
 {
     if(connected)
@@ -77,6 +100,14 @@ void DataBase::Disconnect()
 }
 
 
+/// @brief Create - Commande CREATE
+///
+/// @param table: Le nom de la table à créer
+/// @param field: Les champs à inclure dans la table (sauf ID)
+///
+/// @return False si erreur, true sinon.
+///
+/// Permet de créer une table dans la base de données.
 bool DataBase::Create(std::string table, RowDesc     field)
 {
     RowDesc::iterator it, it2 = field.end();
@@ -112,6 +143,16 @@ bool DataBase::Create(std::string table, RowDesc     field)
     return true;
 }
 
+/// @brief Select - Commande SELECT
+///
+/// @param table: Nom de la table
+/// @param field: Champs à récupérer
+/// @param where: Filtre WHERE (Ex: "ID=2")
+/// @param row: Données récupérées
+///
+/// @return False si erreur, true sinon.
+///
+/// Permet de récupérer des données de la base avec un filtre WHERE.
 bool DataBase::Select(std::string table, std::string field, std::string where, Row& row)
 {
     int ret;
@@ -140,6 +181,16 @@ bool DataBase::Select(std::string table, std::string field, std::string where, R
     return true;
 }
 
+/// @brief Update - Commande UPDATE
+///
+/// @param table: Nom de la table
+/// @param field: Champs à modifier
+/// @param where: Filtre WHERE (Ex: "ID")
+/// @param value: Valeur du filtre (Ex: "2")
+///
+/// @return False si erreur, true sinon.
+///
+/// Permet de modifier un ou plusieurs champs avec un filtre WHERE.
 bool DataBase::Update(std::string table, std::string field, std::string where, std::string value)
 {
     int ret;
@@ -161,6 +212,15 @@ bool DataBase::Update(std::string table, std::string field, std::string where, s
     return true;
 }
 
+/// @brief Insert - Commande INSERT
+///
+/// @param table: Nom de la table
+/// @param field: Nom des champs
+/// @param values: Valeurs à insérer
+///
+/// @return False si erreur, true sinon.
+///
+/// Permet d'insérer une ligne dans une table.
 bool DataBase::Insert(std::string table, std::string field, Row values)
 {
     int ret;
@@ -192,6 +252,15 @@ bool DataBase::Insert(std::string table, std::string field, Row values)
     return true;
 }
 
+/// @brief Delete - Commande DELETE
+///
+/// @param table: Nom de la table
+/// @param where: Filtre WHERE (Ex: "ID")
+/// @param value: Valeur du filtre (Ex: "2")
+///
+/// @return False si erreur, true sinon.
+///
+/// Permet de supprimer une ligne d'une table avec un filtre WHERE.
 bool DataBase::Delete(std::string table, std::string where, std::string value)
 {
     int ret;
@@ -213,6 +282,17 @@ bool DataBase::Delete(std::string table, std::string where, std::string value)
     return true;
 }
 
+/// @brief Search - Ajout de la commande SEARCH
+///
+/// @param table: Nom de la table
+/// @param where: Filtre WHERE (Ex: "ID")
+/// @param value: Valeur du filtre (Ex: "2")
+/// @param exist: Retour de la commande
+///
+/// @return False si erreur, true sinon.
+///
+/// Permet de rechercher si un élément existe à l'aide 
+/// d'un filtre WHERE.
 bool DataBase::Search(std::string table, std::string where, std::string value, bool& exist)
 {
     std::string where_t;
@@ -231,6 +311,9 @@ bool DataBase::Search(std::string table, std::string where, std::string value, b
 }
 
 
+/// @brief ~DataBase - Destructeur
+///
+/// Destructeur de la classe DataBase.
 DataBase::~DataBase()
 {
     if(connected) sqlite3_close(db);

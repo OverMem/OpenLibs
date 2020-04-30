@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file DataBase.h
+/// @brief Header de DataBase
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef DATABASE_H
 #define DATABASE_H
 
@@ -33,6 +39,9 @@ static Row R = {};
 
 int Callback(void *data, int ncol, char **field, char **col);
 
+/// @brief DataBase - Manager de base de données SQL
+///
+/// Classe qui permet de gérer une base données SQLite.
 class DataBase
 {
 public:

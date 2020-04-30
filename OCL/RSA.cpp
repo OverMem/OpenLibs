@@ -17,14 +17,28 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file RSA.cpp
+/// @brief Source de OCL/RSA
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "RSA.h"
 
+/// @brief MakeRSA - Constructeur
+///
+/// @param size: Taille de la clé à générer
+///
+/// Constructeur de la classe MakeRSA.
 MakeRSA::MakeRSA(WORD size)
 {
     Key.S = size;
 }
 
 
+/// @brief Gen - Génération de la clé
+///
+/// Permet de générer la paire de clé RSA.
 void MakeRSA::Gen()
 {
     Int p, q, P, Q, M, e, u, v, pgcd, k = 1;
@@ -67,6 +81,11 @@ void MakeRSA::Gen()
     Key.U = u;
 }
 
+/// @brief GetGen - Lecture de clé générée
+///
+/// @param key: Clé générée
+///
+/// Permet de récupérer la paire de clés générée préalablement.
 void MakeRSA::GetGen(KeyRSA& key)
 {
     key.N = Key.N;
@@ -77,6 +96,11 @@ void MakeRSA::GetGen(KeyRSA& key)
 
 
 
+/// @brief RSA - Constructeur
+///
+/// @param key: Clé RSA
+///
+/// Constructeur de la classe RSA.
 RSA::RSA(KeyRSA key)
 {
     Key.N = key.N;
@@ -87,11 +111,19 @@ RSA::RSA(KeyRSA key)
 }
 
 
+/// @brief Encrypt - Chiffrement avec l'algorithme RSA
+///
+/// @param plain: Nombre à chiffrer
+/// @param cipher: Nombre chiffré
 void RSA::Encrypt(Int plain,  Int& cipher)
 {
     mpz_powm(cipher.get_mpz_t(), plain.get_mpz_t(), Key.E.get_mpz_t(), Key.N.get_mpz_t());
 }
 
+/// @brief Decrypt - Déchiffrement avec l'algorithme RSA
+///
+/// @param cipher: Nombre à déchiffrer
+/// @param plain: Nombre déchiffré
 void RSA::Decrypt(Int cipher, Int& plain)
 {
     mpz_powm(plain.get_mpz_t(), cipher.get_mpz_t(), Key.U.get_mpz_t(), Key.N.get_mpz_t());

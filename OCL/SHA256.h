@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file SHA256.h
+/// @brief Header de OCL/SHA256
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef SHA256_H
 #define SHA256_H
 
@@ -35,6 +41,9 @@ const std::array<DWORD, 64> ConstK = { 0x428A2F98, 0x71374491, 0xB5C0FBCF, 0xE9B
                                        0x19A4C116, 0x1E376C08, 0x2748774C, 0x34B0BCB5, 0x391C0CB3, 0x4ED8AA4A, 0x5B9CCA4F, 0x682E6FF3,
                                        0x748F82EE, 0x78A5636F, 0x84C87814, 0x8CC70208, 0x90BEFFFA, 0xA4506CEB, 0xBEF9A3F7, 0xC67178F2, };
 
+/// @brief SHA256 - Hacheur SHA-256
+///
+/// Classe qui calcule un haché avec l'algorithme SHA-256.
 class SHA256
 {
 public:

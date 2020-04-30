@@ -17,14 +17,28 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file SConf.cpp
+/// @brief Source de SConf
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "SConf.h"
 
+/// @brief SConf - Constructeur
+///
+/// Constructeur de la classe SConf.
 SConf::SConf() : BasicConf()
 {
     return;
 }
 
 
+/// @brief Load - Chargement du fichier
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+///
+/// Permet de charger en mémoire le fichier de configuration.
 ConfErr SConf::Load()
 {
     std::string line, key, value;
@@ -71,6 +85,11 @@ ConfErr SConf::Load()
     return ConfErr::NoErr;
 }
 
+/// @brief Save - Sauvegarde du fichier
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+///
+/// Permet d'enregistrer les modifications dans le fichier.
 ConfErr SConf::Save()
 {
     std::string line, key, value;
@@ -96,6 +115,12 @@ ConfErr SConf::Save()
 }
 
 
+/// @brief SetArg - Création/Mise à jour d'une clé de config
+///
+/// @param Arg: Clé de config
+/// @param value: Valeur à écrire
+///
+/// @return ConfErr::NoErr tout le temps.
 ConfErr SConf::SetArg(std::string Arg, std::string  value)
 {
     if(IsExist(Arg)) config[GetIndex(Arg)].Value = value;
@@ -112,6 +137,12 @@ ConfErr SConf::SetArg(std::string Arg, std::string  value)
     return ConfErr::NoErr;
 }
 
+/// @brief GetArg - Lecture d'une clé de config
+///
+/// @param Arg: Clé de config
+/// @param value: Valeur lue
+///
+/// @return ConfErr::NoErr si pas d'erreur.
 ConfErr SConf::GetArg(std::string Arg, std::string& value)
 {
     if(IsExist(Arg)) value = config[GetIndex(Arg)].Value;
@@ -143,6 +174,19 @@ int SConf::GetIndex(std::string Arg)
     return -1;
 }
 
+/// @brief SetFile - Sélection du fichier de config
+///
+/// @param file: Fichier de configuration
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+ConfErr SConf::SetFile(std::string file)
+{
+    return BasicConf::SetFile(file);
+}
+
+/// @brief ~SConf - Destructeur
+///
+/// Destructeur de la classe SConf
 SConf::~SConf()
 {
     return;

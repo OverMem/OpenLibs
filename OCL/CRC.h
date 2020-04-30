@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file CRC.h
+/// @brief Header de OCL/CRC
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef CRC_H
 #define CRC_H
 
@@ -27,6 +33,10 @@ static bool type16 = true;
 
 void SetType(bool type);
 
+/// @brief CRC - Calculateur de somme de contrôle CRC
+///
+/// Classe qui calcule une somme de contrôle CRC avec les 
+/// standards ANSI, CCITT et Ethernet.
 class CRC
 {
 public:

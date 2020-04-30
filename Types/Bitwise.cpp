@@ -17,8 +17,17 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Bitwise.cpp
+/// @brief Source de Types/Bitwise
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "Bitwise.h"
 
+/// @brief GetEndianness - Lectude de l'endianness du processeur cible
+///
+/// @Return Énumération de type Endian.
 Endian GetEndianness()
 {
     int t = 1;
@@ -28,6 +37,11 @@ Endian GetEndianness()
 }
 
 
+/// @brief SetBit - Modification d'un bit d'un octet
+///
+/// @param data: Octet écrit/à écrire
+/// @param pos: Position du bit à modifier
+/// @param value: Valeur du bit
 void SetBit(BYTE& data, BYTE pos, Bit  value)
 {
     BYTE Pos = pos;
@@ -38,6 +52,11 @@ void SetBit(BYTE& data, BYTE pos, Bit  value)
     else           data &= ~(1u << Pos);
 }
 
+/// @brief GetBit - Lecture d'un bit d'un octet
+///
+/// @param data: Octet à lire
+/// @param pos: Position du bit à lire
+/// @param value: Valeur du bit lue
 void GetBit(BYTE  data, BYTE pos, Bit& value)
 {
     BYTE Pos = pos;
@@ -48,6 +67,10 @@ void GetBit(BYTE  data, BYTE pos, Bit& value)
     else                   value = 0;
 }
 
+/// @brief RotL - Implémentation de ROTL sur un octet
+///
+/// @param data: Octet à modifier
+/// @param shift: Nombre de bits à tourner
 void RotL(BYTE& data, BYTE shift)
 {
     BYTE Shift = shift;
@@ -57,6 +80,10 @@ void RotL(BYTE& data, BYTE shift)
     data = (data << Shift) | (data >> (8 - Shift));
 }
 
+/// @brief RotR - Implémentation de ROTR sur un octet
+///
+/// @param data: Octet à tourner
+/// @param shift: Nombre de bits à tourner
 void RotR(BYTE& data, BYTE shift)
 {
     BYTE Shift = shift;

@@ -17,8 +17,19 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file BinRes.cpp
+/// @brief Source de BinRes
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "BinRes.h"
 
+/// @brief operator= - Opérateur d'affectation entre ResDesc
+///
+/// @param a: ResDesc à affecter
+///
+/// @return Référence sur le ResDesc affecté.
 ResDesc& ResDesc::operator=(ResDesc& a)
 {
 	begin = a.begin;
@@ -28,6 +39,12 @@ ResDesc& ResDesc::operator=(ResDesc& a)
 	return *this;
 }
 
+/// @brief operator== - Opérateur d'égalité entre ResDesc
+///
+/// @param a: ResDesc de gauche
+/// @param b: ResDesc de droite
+///
+/// @return True si a = b, false sinon.
 bool operator==(ResDesc& a, ResDesc& b)
 {
 	if(a.begin != b.begin) return false;
@@ -37,12 +54,20 @@ bool operator==(ResDesc& a, ResDesc& b)
 	return true;
 }
 
+/// @brief BinRes - Constructeur
+///
+/// Constructeur de la classe BinRes.
 BinRes::BinRes()
 {
 	Forward = 0;
 }
 
 
+/// @brief AddRes - Ajout d'une ressource
+///
+/// @param desc: Ressource à ajouter
+///
+/// @return Index de la ressource ajoutée.
 int BinRes::AddRes(ResDesc desc)
 {
 	int ret;
@@ -61,6 +86,11 @@ int BinRes::AddRes(ResDesc desc)
 	return index;
 }
 
+/// @brief DelRes - Suppression d'une ressource
+///
+/// @param num: Index de la ressource à supprimer
+///
+/// @return 1 si erreur, 0 sinon.
 int BinRes::DelRes(int num)
 {
 	if(Res.find(num) == Res.end()) return 1;
@@ -71,6 +101,15 @@ int BinRes::DelRes(int num)
 }
 
 
+/// @brief Read - Lecture d'une ressource
+///
+/// @param num: Index de la ressource à lire
+/// @param rd: Charactère lu
+/// @param cursor: Emplacement du charactère à lire
+///
+/// @return 1 si erreur, 0 sinon.
+///
+/// Lecture d'un charactère d'une ressource.
 int BinRes::Read(int num, char& rd, int cursor)
 {
 	char *cur;
@@ -84,6 +123,14 @@ int BinRes::Read(int num, char& rd, int cursor)
 	return 0;
 }
 
+/// @brief Read - Lecture d'une ressource
+///
+/// @param num: Index de la ressource à lire
+/// @param rd: Tableau des charactères lus (non alloué)
+///
+/// @return 1 ou -1 si erreur, 0 sinon.
+///
+/// Lecture entière d'une ressource par tableau de charactères.
 int BinRes::Read(int num, char* rd)
 {
 	char *cursor;
@@ -106,6 +153,14 @@ int BinRes::Read(int num, char* rd)
 	return 0;
 }
 
+/// @brief Read - Lecture d'une ressource
+///
+/// @param num: Index de la ressource à lire
+/// @param rd: Chaîne de caractère lue
+///
+/// @return 1 si erreur, 0 sinon.
+///
+/// Lecture entière d'une ressource par chaîne de charactères.
 int BinRes::Read(int num, std::string& rd)
 {
 	char *cursor;

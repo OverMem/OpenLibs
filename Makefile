@@ -2,12 +2,14 @@
 
 .SUFFIXES:
 
+PDIR=${PATH}
 LIBDIR=${LIBS}/lib/OPEN
 INCDIR=${LIBS}/include/OPEN
+SHAREDIR=${LIBS}/share/OPEN
 BUILDDIR=./build
-Dirs=BinRes DataBase File MArgs OCL StrTime Types Utils
+Dirs=BinRes DataBase File MArgs OCL StrTime Types Utils Doc
 
-all:
+all: Prepare
 	@mkdir -p ${BUILDDIR}/{lib,inc}
 	@@for d in $(Dirs); do \
 	MakeInfo making $$d; \
@@ -16,27 +18,33 @@ all:
 	Lines 2; \
 	done
 
-clean:
+clean: Prepare
 	@@for d in $(Dirs); do \
 	MakeInfo clean $$d; \
 	make -C $$d clean --no-print-directory; \
 	done
 
-mrproper: clean
+mrproper: clean Prepare
 	@rm -Rf ${BUILDDIR}/
+	@rm -Rf Doc/API/Doxygen/latex
 
-install:
-	@mkdir -p ${LIBDIR}/{Dynamic,Static} ${INCDIR}
+install: Prepare
+	@mkdir -p ${LIBDIR}/{Dynamic,Static} ${INCDIR} ${SHAREDIR}
 	@MakeInfo install "Dynamic libs"
 	@cp -f ${BUILDDIR}/lib/*.so ${LIBDIR}/Dynamic/
 	@MakeInfo install "Static  libs"
 	@cp -f ${BUILDDIR}/lib/*.a ${LIBDIR}/Static/
 	@MakeInfo install "Headers"
 	@cp -Rf ${BUILDDIR}/inc/*/ ${BUILDDIR}/inc/*.h ${INCDIR}
-	@MakeInfo install "Deps Headers"
-	@cp -Rf ./.Include/deps/*/ ${INCDIR}/../
+	@MakeInfo install "API doc"
+	@cp -f Doc/API/Doxygen/latex/API.pdf Doc/API/Doxygen/latex/Logo.svg ${SHAREDIR}
+	@MakeInfo install "OSC doc"
+	@cp -f Doc/OSC/latex/OSC.pdf ${SHAREDIR}
+#	@MakeInfo install "Deps Headers"
+#	@cp -Rf ./.Include/deps/*/ ${INCDIR}/../
 
-uninstall:
+uninstall: Prepare
 	@rm -Rf ${LIBDIR}
 	@rm -Rf ${INCDIR}
+	@rm -Rf ${SHAREDIR}
 

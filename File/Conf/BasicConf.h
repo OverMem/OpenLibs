@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file BasicConf.h
+/// @brief Header de BasicConf
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef BASICCONF_H
 #define BASICCONF_H
 
@@ -27,21 +33,31 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include "OPEN/Types/Defines.h"
 
+/// @brief ConfErr - Énumération d'erreurs
+///
+/// Énumération listant les différentes erreurs possibles.
 enum class ConfErr : sBYTE
 {
-    Name  = -1,
-    File  = -2,
-    Regex = -3,
-    Exist = -4,
-    NoErr =  0
+    Name  = -1, //!< Erreur de nom.
+    File  = -2, //!< Erreur de fichier.
+    Regex = -3, //!< Match regex <=> string impossible.
+    Exist = -4, //!< Élément introuvable.
+    NoErr =  0  //!< Pas d'erreur.
 };
 
+/// @brief ConfDesc - Représente une valeur de config
+///
+/// Structure décrivant une valeur de config du type key/value.
 typedef struct
 {
-    std::string Key;
-    std::string Value;
+    std::string Key;   //!< Clé de configuration.
+    std::string Value; //!< Valeur de configuration.
 }ConfDesc;
 
+/// @brief BasicConf - Manager de fichier de config
+///
+/// Classe abstraite qui définit un modèle de gestion 
+/// de fichier de configuration.
 class BasicConf
 {
 public:

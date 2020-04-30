@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file BinRes.h
+/// @brief Header de BinRes
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef BINRES_H
 #define BINRES_H
 
@@ -25,21 +31,28 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 
 typedef struct ResDesc ResDesc;
 
+/// @brief ResDesc - Représente une ressource
+///
+/// Strcture permettant de représenter une ressource 
+/// par 3 pointeurs: début, fin et taille.
 struct ResDesc
 {
-	char *begin;
-	char *end;
-	char *size;
+	char *begin; //!< Pointeur de début.
+	char *end;   //!< Pointeur de fin.
+	char *size;  //!< Pointeur de taille.
 
     ResDesc& operator=(ResDesc& a);
 };
 
 bool operator==(ResDesc& a, ResDesc& b);
 
+/// @brief BinRes - Conteneur et Manager pour ressources
+/// 
+/// Classe qui stocke et permet la lecture de ressources binaires.
 class BinRes
 {
 public:
-	BinRes();
+    BinRes();
 
 	int AddRes(ResDesc desc);
 	int DelRes(int num);

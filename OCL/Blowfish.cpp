@@ -17,8 +17,19 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Blowfish.cpp
+/// @brief Source de OCL/Blowfish
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "Blowfish.h"
 
+/// @brief Blowfish - Constructeur
+///
+/// @param key: Clé Blowfish
+///
+/// Constructeur de la classe Blowfish.
 Blowfish::Blowfish(BKey key)
 {
     for(BYTE i = 0; i < 14; i++) Key[i] = key[i];
@@ -27,6 +38,10 @@ Blowfish::Blowfish(BKey key)
 }
 
 
+/// @brief Encrypt - Chiffrement avec l'algorithme Blowfish
+///
+/// @param plain: Données à chiffrer
+/// @param cipher: Données chiffrées
 void Blowfish::Encrypt(BData plain,  BData& cipher)
 {
     DWORD w1 = plain[0], w2 = plain[1], temp;
@@ -52,6 +67,10 @@ void Blowfish::Encrypt(BData plain,  BData& cipher)
     cipher[1] = w2;
 }
 
+/// @brief Decrypt - Déchiffrement avec l'algorithme Blowfish
+///
+/// @param cipher: Données à déchiffrer
+/// @param plain: Données déchiffrées
 void Blowfish::Decrypt(BData cipher, BData& plain)
 {
     DWORD w1 = cipher[0], w2 = cipher[1], temp;
@@ -78,6 +97,9 @@ void Blowfish::Decrypt(BData cipher, BData& plain)
 }
 
 
+/// @brief ~Blowfish - Destructeur
+///
+/// Destructeur de la classe Blowfish
 Blowfish::~Blowfish()
 {
     Reset();

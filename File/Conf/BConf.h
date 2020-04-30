@@ -17,12 +17,21 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file BConf.h
+/// @brief Header de BConf
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef BCONF_H
 #define BCONF_H
 
 #include "OPEN/Utils.h"
 #include "BasicConf.h"
 
+/// @brief BConf - Manager de fichier de config
+///
+/// Classe qui gère un fichier de configuration binaire.
 class BConf : public BasicConf
 {
 public:

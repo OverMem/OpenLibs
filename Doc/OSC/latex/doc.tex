@@ -1,0 +1,253 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage{setspace}
+\usepackage{color}
+\usepackage{listings}
+\usepackage[hidelinks=true]{hyperref}
+
+\pdfcompresslevel=9
+
+\lstset
+{
+language=C++,
+tabsize=4,
+basicstyle=\footnotesize,
+numbers=left,
+numberstyle=\footnotesize,
+numbersep=7pt,
+}
+
+\hypersetup
+{
+bookmarks=true,
+bookmarksopen=true,
+pdftitle={Documentation OSC},
+pdfauthor={Rémi Nicolle},
+pdfsubject={Documentation de standard}
+}
+
+\title{Documentation OSC}
+\author{Rémi Nicolle}
+\date{\today}
+
+\onehalfspacing{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\chapter{Introduction}
+
+\fbox
+{
+    \begin{minipage}[c]{17cm}
+        OSC (Open Standard Code) est un standard inventé par moi 
+        permettant une programmation plus compréhensible, explicite 
+        et belle.
+    \end{minipage}
+} \newline{} \newline{}
+
+C++ est un langage de programmation avec très peu de contraintes 
+typographiques, du coup les programmeurs ont adopté différents styles 
+de programmations très contradictoires entre-eux. OSC a été inventé 
+pour définir un certain nombre de règles qu'il n'est pas nécessaire 
+d'utiliser mais si vous décidez de les utiliser, alors vos projets 
+pourront être lus par un maximum de programmeurs.\newline
+
+En effet, ces règles sont définies pour améliorer la compréhension d'un 
+code et correspondre à un maximum de styles de programmation. \newline
+
+Pour résumer, ce standard est uniquement bénéfique et je vous conseille 
+de l'utiliser dans vos futurs projets. Et pas seulement parce que c'est 
+moi qui l'est conçu mais parce qu'il peut vraiment vous aider.
+
+\chapter{Documentation}
+
+Dans ce chapitre, je vais décrire le standard et ses règles accompagnées 
+a chaque fois d'une explication sur le choix de celle-ci pour programmer 
+en C++.
+
+\section{Design de projet}
+\subsection{Règles}
+Un design de projet, en C++, c'est la première chose que l'on voit.
+Ainsi, il devient impératif de le soigner au mieux.\newline
+
+Dans cette optique, les règles de configuration de projet sont les 
+suivantes:\newline
+
+\begin{itemize}
+    \item Faire des dossiers rassemblant des fichiers de même rapport.
+    \item Dans ces dossiers, travailler avec des modules (un header et 
+          un fichier source).
+    \item Le plus souvent possible, utiliser la POO.
+    \item Il vaut mieux quelques fichiers utiles que beaucoup de 
+          fichiers inutiles.
+    \item Pour cela, outre les sources, préférer une configuration du 
+          type: 
+          \begin{itemize}
+                \item[*] README.md
+                \item[*] COPYING
+                \item[*] Makefile (à la racine et dans chaque dossier)
+                \item[*] Dépendances (fichiers utiles à la compilation)
+          \end{itemize}
+\end{itemize}
+
+\subsection{Explications}
+Toutes ces directives peuvent paraître inutiles à première vue, mais 
+croyez moi, elles sont tout à fait justifiées.\newline
+
+En effet, les dossiers permettent d'éviter l'encombrement éventuel 
+que l'on aurait eu si l'on avait rassembler toutes les sources dans 
+un seul ou deux dossiers. Il devient donc impératif de "classer" les 
+fichiers. Par exemple, dans OpenLibs, chaque bibliothèque a son propre 
+dossier et dans celui-ci on peut avoir, c'est le cas de File, plusieurs 
+sous-dossiers si nécessaire.\newline
+
+Les modules, à l'image de ceux de Python, sont un moyen très simple de 
+rassembler les fichiers plus finement et ainsi réduire encore plus 
+l'encombrement.\newline
+
+La POO, quant à elle, utilise le principe des classes ce qui évite le 
+surplus de fonctions que l'on aurait si l'on avait utiliser le 
+C-style. \newline
+
+L'on peut voir dans certains projets, je ne les citerai pas (nous ne 
+sommes pas là pour critiquer), des centaines et des centaines de 
+fichiers servant, pour la plupart, uniquement à un programme usine-à-gaz 
+qui se chargera d'effectuer la compilation qui pourrait être faite bien 
+plus facilement avec un simple Makefile. Ensuite, un seul fichier de 
+Licence suffit (en plus du préambule dnas chaque fichier source). Par 
+ailleurs, le README est très utile pour informer un utilisateur (ou un 
+autre programmeur) de ce qu'est votre projet. La format Markdown ne 
+devient, quant à lui, nécessaire que si le projet est hébergé sur une 
+platforme compatible (par exemple GitHub ou GitLab).
+
+
+\section{Modules}
+\subsection{Règles}
+Les modules OSC, constitués d'un header(.h) et d'une source(.cpp), sont 
+partie intégrante du standard et visent à apporter au mieux une 
+visibilité et une compréhension à un projet.\newline
+
+Ceux-ci sont organisés de la manière suivante: \newline
+
+\begin{itemize}
+    \item[*] Pour l'header: 
+             \begin{itemize}
+                \item Les inclusions nécessaires
+                \item Prototype des fonctions et des classes
+                \item Définitions des fonctions et classes template
+                \item Tout ça aéré au mieux (avec des sauts de lignes et 
+                      tabulations).
+             \end{itemize}
+    \item[*] Pour la source: 
+             \begin{itemize}
+                \item Inclusion de l'header
+                \item Définitions des fonctions et des classes par ordre 
+                      de prototype
+                \item Toujours aérée aussi.
+             \end{itemize}
+\end{itemize}
+
+\subsection{Explications}
+Bon je pense que je n'ai pas besoin de vous expliquer les inclusions. En 
+revanche, le reste mérite quelques petits ajustements.\newline
+
+Les protypes des template et leur définition sont séparées pour la simple 
+et bonne raison que si on les avait réunis, ce qu'il est tout à fait 
+possible de faire en C++, alors on aurait encombrer les prototypes, ce 
+qui aurait rendu illisible leur compréhenion.\newline
+
+Dans la source, si l'on défini les fonctions dans l'ordre des prototypes, 
+ce n'est pas pour durcir les règles, mais pour permettre à une tierce 
+personne de pouvoir faire le lien entre prototype et définitions plus 
+facilement. De plus, les indexeurs feront leur travail plus vite 
+dans ce cas là (J'économise moi-même quelques secondes avec cette 
+règle).\newline
+
+Pour ce qui est d'aérer vos sources, ce n'est uniquement pour une 
+meilleure lisibilité.
+
+
+\section{Typographie}
+\subsection{Règles}
+L'écriture d'un code est certe, le plus souvent, jamais vue par un 
+utilisateur ou un programmeur mais cela ne justifie pas de ne pas la 
+rendre pratique à la lecture.\newline
+
+Pour cela, il devient presque nécessaire d'appliquer les règles 
+typographiques suivantes: \newline
+
+\begin{itemize}
+    \item Les mots des variables sont séparés par des underscores
+    \item Ceux des fonctions et des classes commencent par une majuscule 
+          (par exemple Encrypt ou LoadFile)
+    \item Les accolades ont une ligne pour elle-seule:
+        \begin{center}
+            \begin{minipage}{2.1764in}
+                \lstinputlisting[language=C++]{typo.cpp}
+            \end{minipage}
+        \end{center}
+    \item Les paramètres sont séparés par des ", ".
+    \item Il y a respect des règles typographiques simples(espace après 
+          les ponctuations, etc)
+\end{itemize}
+
+\subsection{Explications}
+Les règles de typographies, bien que peu aperçues dans une lecture, 
+forment une finalite et presque une perfection (la perfection n'existe 
+pas) à un projet déjà bien compréhensible et lisible. Elles participent 
+aussi à la beauté de ce dernier.\newline
+
+Les règles concernant les variables, les fonctions et les classes sont 
+essentiellement là pour assurer une compatibilité avec un certain 
+nombre de styles de programmation. Ceux-ci ont été choisis du fait de 
+leur lisibilité accrue.\newline
+
+Pour ce qui est des accolades, il était préférable de prendre 
+l'écriture décrite au lieu de l'habituelle façon Java:
+\begin{center}
+    \begin{minipage}{2.1764in}
+        \lstinputlisting[language=C++]{typo2.cpp}
+    \end{minipage}
+\end{center}
+Ceci afin de permettre de voir plus facilement le début et la fin 
+d'un bloc.
+
+\chapter{Conclusion}
+Au vu de toutes ces règles, il serait, et je ne vous en voudrait pas, 
+recevable d'être réticent. Car bien que décrites de la manière la plus 
+simple qui soit, celles-ci sont assez strictes. Néanmoins, OSC offre 
+une certaine souplesse quant au style de programmation puisqu'il 
+conviendrait à certains d'entre-eux sans trop de difficultés.\newline
+
+Ceci étant dit, je vous rapellerais qu'une bonne lisibilité permettra 
+à un grand nombre de personnes de pouvoir non seulement lire mais aussi 
+modifier votre projet de façon très efficace puisqu'il sera comprit 
+aussitôt.\newline
+
+C'est cela le but premier d'OSC:\newline
+
+\fbox
+{
+    \begin{minipage}[c]{17cm}
+    \begin{quote}
+    \begin{bf}
+    \textcolor{red}
+    {
+        Permettre à tout individu, pourvu de connaissances suffisantes, 
+        de lire et de modifier, de manière simple, comme si ce projet 
+        lui appartenait.
+    }
+    \end{bf}
+    \end{quote}
+    \end{minipage}
+}
+
+\end{document}
+

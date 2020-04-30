@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Loggr.h
+/// @brief Header de Loggr
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef LOGGR_H
 #define LOGGR_H
 
@@ -28,14 +34,21 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 #include <iomanip>
 #include "OPEN/Types/Convert.h"
 
+/// @brief LogDesc - Représente un message de log
+///
+/// Structure décrivant un message de log avec 
+/// date, numéro et message.
 typedef struct
 {
-    std::string time_s;
-    std::string msg;
+    std::string time_s; //!< Date du log.
+    std::string msg;    //!< Message du log.
 
-    SWORD nlog;
+    SWORD nlog;         //!< Numéro de log.
 }LogDesc;
 
+/// @brief Loggr - Manager de fichier de logs
+///
+/// Classe qui gère un fichier de logs.
 class Loggr
 {
 public:

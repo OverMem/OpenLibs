@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file RSA.h
+/// @brief Header de OCL/RSA
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef RSA_H
 #define RSA_h
 
@@ -26,15 +32,21 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 
 typedef mpz_class Int;
 
+/// @brief KeyRSA - Représente une clé RSA
+///
+/// Structure qui définit une clé publique et privée RSA.
 typedef struct
 {
-    Int N;
-    Int E;
-    Int U;
+    Int N;  //!< Module.
+    Int E;  //!< Exposant publique.
+    Int U;  //!< Exposant privé.
 
-    WORD S;
+    WORD S; //!< Taille de la clé.
 }KeyRSA;
 
+/// @brief MakeRSA - Générateur de clé RSA
+///
+/// Classe qui génère une paire de clés RSA.
 class MakeRSA
 {
 public:
@@ -47,6 +59,9 @@ private:
     KeyRSA Key;
 };
 
+/// @brief RSA - Encrypteur RSA
+///
+/// Classe qui chiffre et déchiffre avec l'algorithme RSA.
 class RSA
 {
 public:

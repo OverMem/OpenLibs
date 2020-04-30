@@ -17,14 +17,28 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file BConf.cpp
+/// @brief Source de BConf
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "BConf.h"
 
+/// @brief BConf - Constructeur
+///
+/// Constructeur de la classe BConf.
 BConf::BConf() : BasicConf()
 {
     return;
 }
 
 
+/// @brief Load - Chargement du fichier
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+///
+/// Permet de charger en mémoire le fichier de configuration.
 ConfErr BConf::Load()
 {
     WORD temp_c, size_v;
@@ -73,6 +87,11 @@ ConfErr BConf::Load()
     return ConfErr::NoErr;
 }
 
+/// @brief Save - Sauvegarde du fichier
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+///
+/// Permet d'enregistrer le modifications dans le fichier.
 ConfErr BConf::Save()
 {
     WORD temp_c, size_v;
@@ -108,6 +127,12 @@ ConfErr BConf::Save()
 }
 
 
+/// @brief SetArg - Création/Mise à jour d'une clé de config
+///
+/// @param Arg: Clé de config
+/// @param value: Valeur à écrire
+///
+/// @return ConfErr::NoErr si pas d'erreur.
 ConfErr BConf::SetArg(std::string Arg, std::string  value)
 {
     std::map<WORD, std::string>::iterator it;
@@ -136,6 +161,12 @@ ConfErr BConf::SetArg(std::string Arg, std::string  value)
     return ConfErr::NoErr;
 }
 
+/// @brief GetArg - Lecture d'une clé de config
+///
+/// @param Arg: Clé de config
+/// @param value: Valeur à lire
+///
+/// @return ConfErr::NoErr si pas d'erreur.
 ConfErr BConf::GetArg(std::string Arg, std::string& value)
 {
     if(IsExist(Arg)) value = config[GetIndex(Arg)].Value;
@@ -145,6 +176,15 @@ ConfErr BConf::GetArg(std::string Arg, std::string& value)
 }
 
 
+/// @brief AddCmd - Ajout d'une clé binaire
+///
+/// @param cmd: Valeur binaire
+/// @param Arg: Clé de config
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+///
+/// Permet d'ajouter une correspondance entre une clé de config 
+/// et une valeur binaire dans le fichier.
 ConfErr BConf::AddCmd(WORD cmd, std::string Arg)
 {
     if(cmd == 0)                           return ConfErr::Name;
@@ -155,6 +195,14 @@ ConfErr BConf::AddCmd(WORD cmd, std::string Arg)
     return ConfErr::NoErr;
 }
 
+/// @brief DelCmd - Suppression d'une clé binaire
+///
+/// @param cmd: Valeur binaire
+///
+/// @return ConfErr::NoErr si pas d'erreur.
+///
+/// Permet de supprimer une correspondance entre une clé de config 
+/// et une valeur binaire du fichier.
 ConfErr BConf::DelCmd(WORD cmd)
 {
     if(command.find(cmd) == command.end()) return ConfErr::Exist;
@@ -205,11 +253,19 @@ WORD BConf::GetCommand(std::string Arg)
 }
 
 
+/// @brief SetFile - Sélection du fichier de config
+///
+/// @param file: Fichier de configuration
+///
+/// @return ConfErr::NoErr si pas d'erreur.
 ConfErr BConf::SetFile(std::string file)
 {
     return BasicConf::SetFile(file);
 }
 
+/// @brief ~BConf - Destructeur
+///
+/// Destructeur de la classe BConf.
 BConf::~BConf()
 {
     return;

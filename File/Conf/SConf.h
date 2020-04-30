@@ -17,12 +17,22 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file SConf.h
+/// @brief Header de SConf
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef SCONF_H
 #define SCONF_H
 
 #include <vector>
 #include "BasicConf.h"
 
+/// @brief SConf - Manager de fichier de config
+///
+/// Classe qui gére un fichier de configuration de 
+/// la forme: key=value.  
 class SConf : public BasicConf
 {
 public:

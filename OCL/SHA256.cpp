@@ -17,13 +17,26 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file SHA256.cpp
+/// @brief Source de OCL/SHA256
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "SHA256.h"
 
+/// @brief SHA256 - Constructeur
+///
+/// Constructeur de la classe SHA256.
 SHA256::SHA256()
 {
     for(BYTE i = 0; i < 64; i++) K[i] = ConstK[i];
 }
 
+/// @brief Hashr - Hachage avec SHA-256
+///
+/// @param data: Données à hacher.
+/// @param H: Résultat du hachage.
 void SHA256::Hashr(DataHash data, Hash& H)
 {
     DWORD H0, H1, H2, H3, H4, H5, H6, H7;

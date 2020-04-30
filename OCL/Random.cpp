@@ -17,8 +17,17 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Random.cpp
+/// @brief Source de OCL/Random
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "Random.h"
 
+/// @brief Random - Constructeur
+///
+/// Constructeur de la classe Random
 Random::Random()
 {
     Entropy_t = new sf::Thread(&Random::Entropy, this);
@@ -31,6 +40,10 @@ Random::Random()
 }
 
 
+/// @brief StartEngine - Démarrage du Moteur d'entropie
+///
+/// @note Le Moteur d'aléa est composé d'un Collecteur d'entropie et d'un Hacheur (SHA-256)
+/// Permet de mettre en marche le Moteur d'aléa si celui-ci a été arrêté.
 void Random::StartEngine()
 {
     if(stop)
@@ -41,6 +54,9 @@ void Random::StartEngine()
     }
 }
 
+/// @brief StopEngine - Extinction du Moteur d'entropie
+///
+/// Permet d'arrêter le Moteur d'aléa si celui-ci est en marche.
 void Random::StopEngine ()
 {
     if(!stop)
@@ -51,6 +67,13 @@ void Random::StopEngine ()
     }
 }
 
+/// @brief GetRand - Génération de nombres pseudo-aléatoires
+///
+/// @param Rand: Tableau des nombres générés
+/// @param len: Nombre de pseudo-aléatoires à générer
+/// @param strict: Blocage de la génaration (true: attend suffisament d'entropie / false: n'attends pas)
+///
+/// @return True si la génération a réussi, false sinon.
 bool Random::GetRand(DWORD* Rand, BYTE len, bool strict)
 {
     if(strict)
@@ -159,6 +182,9 @@ void Random::Dispose()
 }
 
 
+/// @brief ~Random - Destructeur
+///
+/// Destructeur de la classe Random.
 Random::~Random()
 {
     StopEngine();

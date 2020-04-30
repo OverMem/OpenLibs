@@ -17,8 +17,17 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file Loggr.cpp
+/// @brief Source de Loggr
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #include "Loggr.h"
 
+/// @brief Loggr - Constructeur
+///
+/// Constructeur de la classe Loggr.
 Loggr::Loggr()
 {
     File = "DEFAULT_LOG";
@@ -26,6 +35,12 @@ Loggr::Loggr()
 }
 
 
+/// @brief Load - Lecture d'un log
+///
+/// @param n: Numéro du log à lire
+/// @param desc: Log lu
+///
+/// @return 0 si pas d'erreur.
 int Loggr::Load(SWORD n, LogDesc& desc)
 {
     std::string line, temp_n;
@@ -75,6 +90,12 @@ int Loggr::Load(SWORD n, LogDesc& desc)
     return 0;
 }
 
+/// @brief Save - Écriture d'un log
+///
+/// @param n: Numéro du log écrit
+/// @param msg: Message à écrire
+///
+/// @return 0 tout le temps.
 int Loggr::Save(SWORD& n, std::string msg)
 {
     std::time_t t;
@@ -102,6 +123,11 @@ int Loggr::Save(SWORD& n, std::string msg)
 }
 
 
+/// @brief SetFile - Sélection du fichier de logs
+///
+/// @param file: Fichier de logs
+///
+/// @return 0 si pas d'erreur.
 int Loggr::SetFile(std::string file)
 {
     if(file == "DEFAULT_LOG") return -1;
@@ -110,6 +136,10 @@ int Loggr::SetFile(std::string file)
     return 0;
 }
 
+/// @brief ~Loggr - Destructeur
+///
+/// @note Sauvegarde les modifications dans le fichier.
+/// Destructeur de la classe Loggr.
 Loggr::~Loggr()
 {
     if(load)

@@ -17,6 +17,12 @@ You should have received a copy of the GNU General Public License
 along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/// @file MArgs.h
+/// @brief Header de MArgs
+/// @author RemsPrgm
+/// @version 1.0
+/// @date 2020-04-27
+
 #ifndef MARGS_H
 #define MARGS_H
 
@@ -24,6 +30,9 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 #include <map>
 
+/// @brief MArgs - Manager d'arguments de main()
+///
+/// Classe qui gère les arguments de la fonction main.
 class MArgs
 {
 public:
