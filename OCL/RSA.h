@@ -26,8 +26,8 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 #ifndef RSA_H
 #define RSA_h
 
-#include "MP/gmp.h"
-#include "MP/gmpxx.h"
+#include "gmp.h"
+#include "gmpxx.h"
 #include "Random.h"
 
 typedef mpz_class Int;

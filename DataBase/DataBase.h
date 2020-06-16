@@ -30,7 +30,7 @@ along with OpenLibs.  If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 #include <map>
-#include "SQLite/sqlite3.h"
+#include "sqlite3.h"
 
 typedef std::vector<std::string>           Row;
 typedef std::map<std::string, std::string> RowDesc;
