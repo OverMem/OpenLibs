@@ -86,12 +86,14 @@ l'exception d'OpenScripts). Pour ceux qui les auraient peut-être déjà
 installées, les voici: <br/>
 
 
-| Nom         | Version      | Nom de version | Utilité  |
+| Nom         | Version min  | Nom de version | Utilité  |
 |:-----------:|:------------:|:--------------:|:--------:|
 | GMP         | v6.1.2       | Release        | RSA      |
 | SFML        | v2.5.1       | Release        | Random   |
 | SQLite      | 202002271621 | Snapshot       | DataBase |
 | OpenScripts | v1.0         | Release        | Makefile |
+| Doxygen     |              | Release        | Doc API  |
+| PDFLatex    |              | Release        | Doc OSC  |
 
 Pour télécharger OpenScripts, c'est sur le dépôt du même nom dans [mon Github](https://github.com/RemsPrgm/).
 
