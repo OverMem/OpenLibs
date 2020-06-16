@@ -81,9 +81,7 @@ share/OPEN/OSC.pdf, après installation.
 <h2 style="color:#0761b2">Compilation et installation</h2>
 <h3 style="color: #045576">Dépendances</h3>
 
-Les dépendances d'OpenLibs sont fournies dans le dossier .Deps (à 
-l'exception d'OpenScripts). Pour ceux qui les auraient peut-être déjà 
-installées, les voici: <br/>
+OpenLibs a quelques dépendances, les voici:
 
 
 | Nom         | Version min  | Nom de version | Utilité  |
