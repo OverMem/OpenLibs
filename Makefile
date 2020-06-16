@@ -34,8 +34,6 @@ install:
 	@install -d ${LIBDIR}/Static
 	@install -d ${INCDIR}
 	@install -d ${INCDIR}/File
-	@install -d ${INCDIR}/File/Conf
-	@install -d ${INCDIR}/File/Log
 	@install -d ${INCDIR}/OCL
 	@install -d ${INCDIR}/Types
 	@install -d ${SHAREDIR}
@@ -44,8 +42,7 @@ install:
 	@MakeInfo install "Static  libs"
 	@install -D ${BUILDDIR}/lib/*.a ${LIBDIR}/Static/
 	@MakeInfo install "Headers"
-	@install -D ${BUILDDIR}/inc/File/Conf/*.h ${INCDIR}/File/Conf
-	@install -D ${BUILDDIR}/inc/File/Log/*.h ${INCDIR}/File/Log
+	@install -D ${BUILDDIR}/inc/File/*.h ${INCDIR}/File
 	@install -D ${BUILDDIR}/inc/OCL/*.h ${INCDIR}/OCL
 	@install -D ${BUILDDIR}/inc/Types/*.h ${INCDIR}/Types
 	@install -D ${BUILDDIR}/inc/*.h ${INCDIR}
