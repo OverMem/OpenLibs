@@ -9,7 +9,7 @@ SHAREDIR=${LIBS}/share/OPEN
 BUILDDIR=./build
 Dirs=BinRes DataBase File MArgs OCL StrTime Types Utils Doc
 
-all: Prepare
+all:
 	@mkdir -p ${BUILDDIR}/{lib,inc}
 	@@for d in $(Dirs); do \
 	MakeInfo making $$d; \
@@ -18,17 +18,17 @@ all: Prepare
 	Lines 2; \
 	done
 
-clean: Prepare
+clean:
 	@@for d in $(Dirs); do \
 	MakeInfo clean $$d; \
 	make -C $$d clean --no-print-directory; \
 	done
 
-mrproper: clean Prepare
+mrproper: clean
 	@rm -Rf ${BUILDDIR}/
 	@rm -Rf Doc/API/Doxygen/latex
 
-install: Prepare
+install: all
 	@mkdir -p ${LIBDIR}/{Dynamic,Static} ${INCDIR} ${SHAREDIR}
 	@MakeInfo install "Dynamic libs"
 	@cp -f ${BUILDDIR}/lib/*.so ${LIBDIR}/Dynamic/
@@ -43,7 +43,7 @@ install: Prepare
 #	@MakeInfo install "Deps Headers"
 #	@cp -Rf ./.Include/deps/*/ ${INCDIR}/../
 
-uninstall: Prepare
+uninstall:
 	@rm -Rf ${LIBDIR}
 	@rm -Rf ${INCDIR}
 	@rm -Rf ${SHAREDIR}
