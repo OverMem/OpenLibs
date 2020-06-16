@@ -3,9 +3,9 @@
 .SUFFIXES:
 
 PDIR=${PATH}
-LIBDIR=${LIBS}/lib/OPEN
-INCDIR=${LIBS}/include/OPEN
-SHAREDIR=${LIBS}/share/OPEN
+LIBDIR=/usr/lib/OPEN
+INCDIR=/usr/include/OPEN
+SHAREDIR=/usr/share/OPEN
 BUILDDIR=./build
 Dirs=BinRes DataBase File MArgs OCL StrTime Types Utils Doc
 

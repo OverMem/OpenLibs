@@ -102,10 +102,8 @@ shell:
 
 
 ```bash
-export LIBS={install-directory}
 make
 make install
 ```
-Où:
 
-* {install-directory}: Le répertoire d'installation (Ex: export LIBS=/usr)
+OpenLibs sera installé dans /usr.
