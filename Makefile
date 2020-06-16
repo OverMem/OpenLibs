@@ -29,8 +29,8 @@ mrproper: clean
 	@rm -Rf Doc/API/Doxygen/latex
 
 install:
-	@mkdir ${LIBDIR}/Dynamic
-	@mkdir ${LIBDIR}/Static
+	@mkdir -p ${LIBDIR}/Dynamic
+	@mkdir -p ${LIBDIR}/Static
 	@mkdir ${INCDIR}
 	@mkdir ${SHAREDIR}
 	@MakeInfo install "Dynamic libs"
