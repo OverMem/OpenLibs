@@ -29,26 +29,25 @@ mrproper: clean
 	@rm -Rf Doc/API/Doxygen/latex
 
 install:
-	@mkdir -p ${LIBDIR}/Dynamic
-	@mkdir -p ${LIBDIR}/Static
-	@mkdir ${INCDIR}
-	@mkdir ${SHAREDIR}
+	@install -d ${LIBDIR}
+	@install -d ${LIBDIR}/Dynamic
+	@install -d ${LIBDIR}/Static
+	@install -d ${INCDIR}
+	@install -d ${SHAREDIR}
 	@MakeInfo install "Dynamic libs"
-	@cp -f ${BUILDDIR}/lib/*.so ${LIBDIR}/Dynamic/
-	@chmod -R 555 ${LIBDIR}/Dynamic
+	@install -D ${BUILDDIR}/lib/*.so ${LIBDIR}/Dynamic/
 	@MakeInfo install "Static  libs"
-	@cp -f ${BUILDDIR}/lib/*.a ${LIBDIR}/Static/
-	@chmod -R 555 ${LIBDIR}/Static
+	@install -D ${BUILDDIR}/lib/*.a ${LIBDIR}/Static/
 	@MakeInfo install "Headers"
-	@cp -Rf ${BUILDDIR}/inc/*/ ${BUILDDIR}/inc/*.h ${INCDIR}
-	@chmod -R 444 ${INCDIR}
+	@install -D ${BUILDDIR}/inc/*/ ${INCDIR}
+	@install -D ${BUILDDIR}/inc/*.h ${INCDIR}
 	@MakeInfo install "API doc"
-	@cp -f Doc/API/Doxygen/latex/API.pdf Doc/API/Doxygen/latex/Logo.svg ${SHAREDIR}
+	@install -D Doc/API/Doxygen/latex/API.pdf ${SHAREDIR}
+	@install -D Doc/API/Doxygen/latex/Logo.svg ${SHAREDIR}
 	@MakeInfo install "OSC doc"
-	@cp -f Doc/OSC/latex/OSC.pdf ${SHAREDIR}
-	@chmod -R 555 ${SHAREDIR}
+	@install -D Doc/OSC/latex/OSC.pdf ${SHAREDIR}
 #	@MakeInfo install "Deps Headers"
-#	@cp -Rf ./.Include/deps/*/ ${INCDIR}/../
+#	@install -D ./.Include/deps/*/ ${INCDIR}/../
 
 uninstall:
 	@rm -Rf ${LIBDIR}
