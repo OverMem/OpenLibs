@@ -35,14 +35,18 @@ install:
 	@mkdir ${SHAREDIR}
 	@MakeInfo install "Dynamic libs"
 	@cp -f ${BUILDDIR}/lib/*.so ${LIBDIR}/Dynamic/
+	@chmod -R 555 ${LIBDIR}/Dynamic
 	@MakeInfo install "Static  libs"
 	@cp -f ${BUILDDIR}/lib/*.a ${LIBDIR}/Static/
+	@chmod -R 555 ${LIBDIR}/Static
 	@MakeInfo install "Headers"
 	@cp -Rf ${BUILDDIR}/inc/*/ ${BUILDDIR}/inc/*.h ${INCDIR}
+	@chmod -R 444 ${INCDIR}
 	@MakeInfo install "API doc"
 	@cp -f Doc/API/Doxygen/latex/API.pdf Doc/API/Doxygen/latex/Logo.svg ${SHAREDIR}
 	@MakeInfo install "OSC doc"
 	@cp -f Doc/OSC/latex/OSC.pdf ${SHAREDIR}
+	@chmod -R 555 ${SHAREDIR}
 #	@MakeInfo install "Deps Headers"
 #	@cp -Rf ./.Include/deps/*/ ${INCDIR}/../
 
